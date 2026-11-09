@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, CheckCircle2, Award, Sparkles, ArrowDown } from 'lucide-react';
+import { ArrowRight, ArrowDown } from 'lucide-react';
 
 export default function Hero({ onOpenQuote }) {
   const scrollToServices = () => {
@@ -23,16 +23,16 @@ export default function Hero({ onOpenQuote }) {
           {/* Hero Left Content */}
           <div className="hero-content">
             <div className="hero-pill">
-              <span className="hero-pill-badge">ISO Certified</span>
-              <span className="hero-pill-text">ISO 9001:2008 & ISO 17100:2015 Recognized</span>
+              <span className="hero-pill-badge">Hyderabad, India</span>
+              <span className="hero-pill-text">Founded Feb 2021 • 5+ Years Experience</span>
             </div>
 
             <h1 className="hero-title">
-              Breaking Language Barriers, <span>Connecting</span> the World.
+              Bridging Languages. <span>Empowering</span> Businesses.
             </h1>
 
             <p className="hero-description">
-              Professional language and translation services tailored for global enterprises, life sciences, legal firms, and institutions. Accurate human translation in 150+ languages with guaranteed cultural precision.
+              IBS delivers professional language translation and business outsourcing solutions, helping organizations communicate effectively and streamline business operations.
             </p>
 
             <div className="hero-actions">
@@ -41,7 +41,7 @@ export default function Hero({ onOpenQuote }) {
                 className="btn-yellow"
                 onClick={scrollToQuote}
               >
-                <span>GET A FREE QUOTE</span>
+                <span>Get a Free Quote</span>
                 <ArrowRight size={18} />
               </button>
 
@@ -50,27 +50,23 @@ export default function Hero({ onOpenQuote }) {
                 className="btn-blue-outline"
                 onClick={scrollToServices}
               >
-                <span>Explore Services</span>
+                <span>Explore Our Services</span>
               </button>
             </div>
 
-            {/* Quick Trust Statistics */}
+            {/* Verified Statistics based on IBS details */}
             <div className="hero-trust-row">
               <div className="hero-stat-item">
-                <span className="hero-stat-number">150+</span>
-                <span className="hero-stat-label">Global Languages</span>
+                <span className="hero-stat-number">5+</span>
+                <span className="hero-stat-label">Years of Experience</span>
               </div>
               <div className="hero-stat-item">
-                <span className="hero-stat-number">5,000+</span>
-                <span className="hero-stat-label">Satisfied Clients</span>
+                <span className="hero-stat-number">2021</span>
+                <span className="hero-stat-label">Established</span>
               </div>
-              <div className="hero-stat-item">
-                <span className="hero-stat-number">99.8%</span>
-                <span className="hero-stat-label">Accuracy Rate</span>
-              </div>
-              <div className="hero-stat-item">
-                <span className="hero-stat-number">100%</span>
-                <span className="hero-stat-label">Native Linguists</span>
+              <div className="hero-stat-item" style={{ gridColumn: 'span 2' }}>
+                <span className="hero-stat-number" style={{ fontSize: '1.45rem' }}>Dual Focus</span>
+                <span className="hero-stat-label">Translation & Outsourcing Expertise</span>
               </div>
             </div>
           </div>
@@ -79,17 +75,17 @@ export default function Hero({ onOpenQuote }) {
           <div className="hero-visual">
             <div className="hero-card-showcase">
               <div className="hero-showcase-badge">
-                <span className="status-dot">Live Multilingual Workflow</span>
+                <span className="status-dot">Linguistic & Operational Workflow</span>
                 <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>
-                  Subject-Matter Expert Review
+                  Hyderabad Center of Excellence
                 </span>
               </div>
 
               {/* Translation Demo visual */}
               <div className="showcase-translation-demo">
                 <div className="demo-lang-box">
-                  <div className="lang-name">English (Source)</div>
-                  <div className="lang-text">"Breaking Language Barriers, Connecting the World."</div>
+                  <div className="lang-name">English (Core Motto)</div>
+                  <div className="lang-text">"Bridging Languages. Empowering Businesses."</div>
                 </div>
 
                 <div className="demo-arrow">
@@ -98,28 +94,28 @@ export default function Hero({ onOpenQuote }) {
 
                 <div className="demo-lang-box">
                   <div className="lang-name">Hindi (हिन्दी)</div>
-                  <div className="lang-text">"भाषा की बाधाओं को तोड़कर, दुनिया को जोड़ते हैं।"</div>
+                  <div className="lang-text">"भाषाओं को जोड़ना। व्यवसायों को सशक्त बनाना।"</div>
                 </div>
 
-                <div className="demo-lang-box" style={{ borderColor: 'rgba(7, 85, 165, 0.3)', background: '#f0f6fc' }}>
-                  <div className="lang-name">French (Français)</div>
-                  <div className="lang-text">"Briser les barrières de la langue, connecter le monde."</div>
+                <div className="demo-lang-box" style={{ borderColor: 'rgba(13, 148, 136, 0.35)', background: '#f0fdfa' }}>
+                  <div className="lang-name">Telugu (తెలుగు – Regional Presence)</div>
+                  <div className="lang-text">"భాషల వారధి. వ్యాపారాల సాధికారత."</div>
                 </div>
               </div>
 
-              {/* Verified ISO Credential Badges */}
+              {/* Value Pillars replacing ISO stamps */}
               <div className="hero-iso-stamps">
                 <div className="iso-stamp-item">
-                  <span className="iso-stamp-code">ISO 9001</span>
-                  <span className="iso-stamp-title">Quality Standard</span>
+                  <span className="iso-stamp-code">Translation</span>
+                  <span className="iso-stamp-title">Contextual Accuracy</span>
                 </div>
                 <div className="iso-stamp-item">
-                  <span className="iso-stamp-code">ISO 17100</span>
-                  <span className="iso-stamp-title">Translation QA</span>
+                  <span className="iso-stamp-code">Outsourcing</span>
+                  <span className="iso-stamp-title">Back-Office & Ops</span>
                 </div>
                 <div className="iso-stamp-item">
-                  <span className="iso-stamp-code">ISO 27001</span>
-                  <span className="iso-stamp-title">Data Security</span>
+                  <span className="iso-stamp-code">Excellence</span>
+                  <span className="iso-stamp-title">Client-Centric</span>
                 </div>
               </div>
             </div>
@@ -129,4 +125,3 @@ export default function Hero({ onOpenQuote }) {
     </section>
   );
 }
-

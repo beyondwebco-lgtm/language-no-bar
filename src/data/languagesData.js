@@ -1,16 +1,10 @@
+/**
+ * IBS - Innovative Business Solutions
+ * Languages Showcase: Featured Language Pairs
+ * Note: Language pairings and offerings are presented as illustrative until confirmed by IBS.
+ */
+
 export const FEATURED_LANGUAGE_PAIRS = [
-  {
-    id: 'de-en',
-    pair: 'German ↔ English',
-    source: 'German',
-    target: 'English',
-    nativeSource: 'Deutsch',
-    flagA: '🇩🇪',
-    flagB: '🇬🇧',
-    speakers: '135M+ Speakers',
-    region: 'European',
-    popularUse: 'Automotive, Engineering, Legal & Financial Documents'
-  },
   {
     id: 'hi-en',
     pair: 'Hindi ↔ English',
@@ -19,9 +13,21 @@ export const FEATURED_LANGUAGE_PAIRS = [
     nativeSource: 'हिन्दी',
     flagA: '🇮🇳',
     flagB: '🇬🇧',
-    speakers: '600M+ Speakers',
+    speakers: 'Indian National Reach',
     region: 'Indian Languages',
-    popularUse: 'Government, FMCG, Banking, Healthcare & Media'
+    popularUse: 'Corporate Communications, Government, Legal & Business Documentation'
+  },
+  {
+    id: 'de-en',
+    pair: 'German ↔ English',
+    source: 'German',
+    target: 'English',
+    nativeSource: 'Deutsch',
+    flagA: '🇩🇪',
+    flagB: '🇬🇧',
+    speakers: 'European Commerce',
+    region: 'European Languages',
+    popularUse: 'Engineering, Manufacturing, Trade Agreements & Technical Manuals'
   },
   {
     id: 'fr-en',
@@ -31,9 +37,9 @@ export const FEATURED_LANGUAGE_PAIRS = [
     nativeSource: 'Français',
     flagA: '🇫🇷',
     flagB: '🇬🇧',
-    speakers: '300M+ Speakers',
-    region: 'European',
-    popularUse: 'Luxury Goods, Life Sciences, Aerospace & Tourism'
+    speakers: 'Global Francophone',
+    region: 'European Languages',
+    popularUse: 'International Business, Consumer Goods, Corporate Reports & Tourism'
   },
   {
     id: 'es-en',
@@ -43,9 +49,9 @@ export const FEATURED_LANGUAGE_PAIRS = [
     nativeSource: 'Español',
     flagA: '🇪🇸',
     flagB: '🇬🇧',
-    speakers: '550M+ Speakers',
+    speakers: 'Americas & Europe',
     region: 'European / Americas',
-    popularUse: 'E-commerce, Clinical Research, Legal & Tech'
+    popularUse: 'Commercial Contracts, Digital Content, E-Commerce & Customer Messaging'
   },
   {
     id: 'ar-en',
@@ -55,9 +61,9 @@ export const FEATURED_LANGUAGE_PAIRS = [
     nativeSource: 'العربية',
     flagA: '🇸🇦',
     flagB: '🇬🇧',
-    speakers: '420M+ Speakers',
+    speakers: 'Middle Eastern Trade',
     region: 'Middle Eastern',
-    popularUse: 'Energy, Oil & Gas, Construction, DTP & Finance'
+    popularUse: 'Energy, Trade Partnerships, Infrastructure & Corporate Documentation'
   },
   {
     id: 'ja-en',
@@ -67,9 +73,9 @@ export const FEATURED_LANGUAGE_PAIRS = [
     nativeSource: '日本語',
     flagA: '🇯🇵',
     flagB: '🇬🇧',
-    speakers: '125M+ Speakers',
-    region: 'Asian',
-    popularUse: 'Electronics, Gaming, Robotics, Patents & Manufacturing'
+    speakers: 'East Asian Commerce',
+    region: 'Asian Languages',
+    popularUse: 'Technology, Hardware Specs, Operations & Manufacturing Standards'
   },
   {
     id: 'zh-en',
@@ -79,9 +85,9 @@ export const FEATURED_LANGUAGE_PAIRS = [
     nativeSource: '中文 (Simplified & Traditional)',
     flagA: '🇨🇳',
     flagB: '🇬🇧',
-    speakers: '1.3B+ Speakers',
-    region: 'Asian',
-    popularUse: 'International Trade, Hardware, IT & Market Surveys'
+    speakers: 'Global Trade Hub',
+    region: 'Asian Languages',
+    popularUse: 'Supply Chain, International Trade, Logistics & Business Correspondence'
   },
   {
     id: 'mr-en',
@@ -91,9 +97,9 @@ export const FEATURED_LANGUAGE_PAIRS = [
     nativeSource: 'मराठी',
     flagA: '🇮🇳',
     flagB: '🇬🇧',
-    speakers: '95M+ Speakers',
+    speakers: 'Western India Hub',
     region: 'Indian Languages',
-    popularUse: 'Maharashtra State Govt, Agriculture, Pharma & Banking'
+    popularUse: 'Commercial Contracts, State Documentation, Banking & Industry'
   },
   {
     id: 'gu-en',
@@ -103,42 +109,35 @@ export const FEATURED_LANGUAGE_PAIRS = [
     nativeSource: 'ગુજરાતી',
     flagA: '🇮🇳',
     flagB: '🇬🇧',
-    speakers: '60M+ Speakers',
+    speakers: 'Industrial Hub',
     region: 'Indian Languages',
-    popularUse: 'Chemicals, Textiles, Diamond Industry, Legal & Fintech'
+    popularUse: 'Trade Agreements, Manufacturing, Commerce & Financial Notices'
   }
 ];
 
 export const ALL_SUPPORTED_LANGUAGES = {
   'Indian Languages': [
     { name: 'Hindi', native: 'हिन्दी' },
+    { name: 'Telugu', native: 'తెలుగు' },
     { name: 'Marathi', native: 'मराठी' },
     { name: 'Gujarati', native: 'ગુજરાતી' },
-    { name: 'Bengali', native: 'বাংলা' },
     { name: 'Tamil', native: 'தமிழ்' },
-    { name: 'Telugu', native: 'తెలుగు' },
     { name: 'Kannada', native: 'ಕನ್ನಡ' },
     { name: 'Malayalam', native: 'മലയാളം' },
+    { name: 'Bengali', native: 'বাংলা' },
     { name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
     { name: 'Odia', native: 'ଓଡ଼ିଆ' },
-    { name: 'Assamese', native: 'অসমীয়া' },
-    { name: 'Urdu', native: 'اردو' },
-    { name: 'Sanskrit', native: 'संस्कृतम्' },
-    { name: 'Nepali', native: 'नेपाली' }
+    { name: 'Urdu', native: 'اردو' }
   ],
   'European Languages': [
+    { name: 'English', native: 'English' },
     { name: 'German', native: 'Deutsch' },
     { name: 'French', native: 'Français' },
     { name: 'Spanish', native: 'Español' },
     { name: 'Italian', native: 'Italiano' },
     { name: 'Portuguese', native: 'Português' },
-    { name: 'Russian', native: 'Русский' },
     { name: 'Dutch', native: 'Nederlands' },
-    { name: 'Polish', native: 'Polski' },
-    { name: 'Swedish', native: 'Svenska' },
-    { name: 'Norwegian', native: 'Norsk' },
-    { name: 'Danish', native: 'Dansk' },
-    { name: 'Greek', native: 'Ελληνικά' }
+    { name: 'Russian', native: 'Русский' }
   ],
   'Asian Languages': [
     { name: 'Japanese', native: '日本語' },
@@ -146,19 +145,11 @@ export const ALL_SUPPORTED_LANGUAGES = {
     { name: 'Chinese (Traditional)', native: '繁體中文' },
     { name: 'Korean', native: '한국어' },
     { name: 'Vietnamese', native: 'Tiếng Việt' },
-    { name: 'Thai', native: 'ไทย' },
-    { name: 'Indonesian', native: 'Bahasa Indonesia' },
-    { name: 'Malay', native: 'Bahasa Melayu' },
-    { name: 'Burmese', native: 'မြန်မာစာ' },
-    { name: 'Tagalog', native: 'Filipino' }
+    { name: 'Bahasa Indonesia', native: 'Bahasa Indonesia' }
   ],
-  'Middle Eastern & African': [
+  'Middle Eastern Languages': [
     { name: 'Arabic', native: 'العربية' },
-    { name: 'Hebrew', native: 'עברית' },
     { name: 'Persian (Farsi)', native: 'فارسی' },
-    { name: 'Turkish', native: 'Türkçe' },
-    { name: 'Swahili', native: 'Kiswahili' },
-    { name: 'Amharic', native: 'አማርኛ' }
+    { name: 'Turkish', native: 'Türkçe' }
   ]
 };
-

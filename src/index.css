@@ -1,28 +1,32 @@
 :root {
-  --primary-blue: #0755A5;
-  --primary-blue-dark: #053d77;
-  --primary-blue-deep: #03274e;
-  --primary-blue-light: #166ecc;
-  --primary-blue-tint: #f0f6fc;
-  --accent-yellow: #FFB900;
-  --accent-yellow-hover: #e6a700;
-  --accent-yellow-light: #fff9e6;
-  --text-main: #1e293b;
-  --text-muted: #52627a;
+  --primary-blue: #0B2545;
+  --primary-blue-dark: #061729;
+  --primary-blue-deep: #030F1C;
+  --primary-blue-light: #163B66;
+  --primary-blue-tint: #f0f7fc;
+  --accent-teal: #0D9488;
+  --accent-teal-dark: #0F766E;
+  --accent-teal-light: #14B8A6;
+  --accent-teal-tint: #f0fdfa;
+  --accent-yellow: #0D9488;
+  --accent-yellow-hover: #0F766E;
+  --accent-yellow-light: #f0fdfa;
+  --text-main: #0f172a;
+  --text-muted: #475569;
   --text-light: #94a3b8;
   --bg-white: #ffffff;
   --bg-subtle: #f8fafc;
   --bg-card: #ffffff;
   --border-color: #e2e8f0;
-  --border-blue: rgba(7, 85, 165, 0.22);
+  --border-blue: rgba(11, 37, 69, 0.2);
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-xl: 22px;
   --shadow-subtle: 0 2px 6px rgba(0, 0, 0, 0.04);
-  --shadow-card: 0 4px 20px -2px rgba(7, 85, 165, 0.08);
-  --shadow-hover: 0 12px 30px -4px rgba(7, 85, 165, 0.16);
-  --shadow-yellow: 0 6px 18px rgba(255, 185, 0, 0.35);
+  --shadow-card: 0 4px 20px -2px rgba(11, 37, 69, 0.08);
+  --shadow-hover: 0 12px 30px -4px rgba(11, 37, 69, 0.16);
+  --shadow-yellow: 0 6px 18px rgba(13, 148, 136, 0.35);
   --container-max: 1240px;
   --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -141,29 +145,31 @@ button {
   text-align: center;
 }
 
-/* Primary Yellow Button */
+/* Primary Action Button (IBS Teal) */
 .btn-yellow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: var(--accent-yellow);
-  color: #111827;
+  background-color: var(--accent-teal);
+  color: #ffffff;
   font-weight: 700;
   font-size: 0.95rem;
   padding: 12px 24px;
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-yellow);
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
   transition: var(--transition);
-  border: 1px solid transparent;
+  border: 1px solid var(--accent-teal);
   cursor: pointer;
   white-space: nowrap;
 }
 
 .btn-yellow:hover {
-  background-color: var(--accent-yellow-hover);
+  background-color: var(--accent-teal-hover);
+  border-color: var(--accent-teal-hover);
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(255, 185, 0, 0.45);
+  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.45);
 }
 
 .btn-yellow:active {
@@ -2329,3 +2335,278 @@ button {
     padding: 22px 16px;
   }
 }
+
+/* ==========================================================================
+   IBS - Specific Components: Services Tabs, Founder Section & Refinements
+   ========================================================================== */
+
+/* Services Category Tabs */
+.services-category-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  padding: 6px;
+  border-radius: 9999px;
+  margin-top: 24px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.services-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: #475569;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.services-tab-btn:hover {
+  color: var(--primary-blue);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.services-tab-btn.active {
+  background: var(--primary-blue);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(11, 37, 69, 0.2);
+}
+
+.service-deliverables-mini {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.service-mini-bullet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.services-proposal-notice {
+  text-align: center;
+  margin-top: 32px;
+  padding: 12px 18px;
+  background: #f8fafc;
+  border-radius: var(--radius-sm);
+  border: 1px dashed #cbd5e1;
+}
+
+.services-proposal-notice p {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Meet Our Founder Section (Abburi Tanuja)
+   ========================================================================== */
+.founder-section {
+  padding: 90px 0;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  position: relative;
+}
+
+.founder-card-container {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 40px;
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-card);
+  padding: 44px;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.founder-profile-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-right: 20px;
+  border-right: 1px solid var(--border-color);
+}
+
+.founder-photo-frame {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.founder-avatar-placeholder {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0B2545 0%, #163B66 100%);
+  border: 4px solid #14B8A6;
+  box-shadow: 0 10px 25px rgba(11, 37, 69, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.founder-initials-badge {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 2px;
+  font-family: var(--font-family);
+}
+
+.founder-photo-icon-overlay {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #0D9488;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.founder-photo-notice {
+  margin-top: 10px;
+  font-size: 0.76rem;
+  color: #64748b;
+  font-style: italic;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+.founder-identity .founder-name {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  margin-bottom: 4px;
+}
+
+.founder-identity .founder-role {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0D9488;
+  margin-bottom: 18px;
+}
+
+.founder-badges-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.founder-badge-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.founder-badge-pill svg {
+  color: #0D9488;
+}
+
+.founder-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.founder-vision-box {
+  background: #f0fdfa;
+  border-left: 4px solid #0D9488;
+  padding: 22px 26px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  position: relative;
+}
+
+.founder-quote-icon {
+  color: #14B8A6;
+  opacity: 0.35;
+  margin-bottom: -10px;
+}
+
+.founder-block-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 8px;
+}
+
+.founder-quote-text {
+  font-size: 1rem;
+  color: #1e293b;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.founder-quote-signoff {
+  font-size: 0.88rem;
+  color: #475569;
+  text-align: right;
+}
+
+.founder-detail-block {
+  padding: 18px 22px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+}
+
+.founder-detail-text {
+  font-size: 0.92rem;
+  color: #334155;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.biography-placeholder-box {
+  background: #fafaf9;
+  border-left: 3px dashed #cbd5e1;
+}
+
+@media (max-width: 900px) {
+  .founder-card-container {
+    grid-template-columns: 1fr;
+    padding: 28px 20px;
+    gap: 30px;
+  }
+  .founder-profile-col {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 26px;
+  }
+}
+

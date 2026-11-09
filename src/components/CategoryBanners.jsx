@@ -1,22 +1,22 @@
 import React from 'react';
 import { 
-  Languages, 
+  FileText, 
+  Building2, 
   Globe, 
-  Activity, 
-  FileAudio, 
-  CheckCircle2, 
-  Layout, 
+  Workflow, 
+  Layers, 
+  Database,
   ArrowUpRight 
 } from 'lucide-react';
 import { CATEGORY_SERVICES } from '../data/servicesData';
 
 const iconMap = {
-  Languages: Languages,
+  FileText: FileText,
+  Building2: Building2,
   Globe: Globe,
-  Activity: Activity,
-  FileAudio: FileAudio,
-  CheckCircle2: CheckCircle2,
-  LayoutTemplate: Layout
+  Workflow: Workflow,
+  Layers: Layers,
+  Database: Database
 };
 
 export default function CategoryBanners({ onSelectCategory }) {
@@ -25,21 +25,21 @@ export default function CategoryBanners({ onSelectCategory }) {
       <div className="container">
         <div className="categories-horizontal-grid">
           {CATEGORY_SERVICES.map((cat) => {
-            const IconComponent = iconMap[cat.iconName] || Languages;
-            const isYellow = cat.id === 'translation';
+            const IconComponent = iconMap[cat.iconName] || Globe;
 
             return (
               <div
                 key={cat.id}
                 className="category-box"
                 style={{ backgroundColor: cat.bgColor }}
-                data-theme={isYellow ? 'yellow' : 'default'}
-                onClick={() => onSelectCategory && onSelectCategory(cat)}
+                onClick={() => {
+                  if (onSelectCategory) onSelectCategory(cat);
+                }}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onSelectCategory && onSelectCategory(cat);
+                  if ((e.key === 'Enter' || e.key === ' ') && onSelectCategory) {
+                    onSelectCategory(cat);
                   }
                 }}
               >
@@ -52,8 +52,8 @@ export default function CategoryBanners({ onSelectCategory }) {
                     position: 'absolute',
                     top: 8,
                     right: 8,
-                    color: isYellow ? '#1e293b' : 'rgba(255,255,255,0.7)',
-                    opacity: 0.8
+                    color: 'rgba(255,255,255,0.85)',
+                    opacity: 0.9
                   }}
                 >
                   <ArrowUpRight size={16} />
@@ -66,4 +66,3 @@ export default function CategoryBanners({ onSelectCategory }) {
     </section>
   );
 }
-

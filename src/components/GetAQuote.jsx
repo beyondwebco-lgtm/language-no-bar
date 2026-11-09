@@ -7,8 +7,7 @@ import {
   X, 
   ShieldCheck, 
   Clock, 
-  PhoneCall, 
-  HelpCircle 
+  Building2 
 } from 'lucide-react';
 
 export default function GetAQuote({ prefillService, prefillSourceLang, prefillTargetLang, onQuoteSuccess }) {
@@ -28,21 +27,45 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedQuote, setSubmittedQuote] = useState(null);
 
-  const servicesList = [
-    'Translation Services',
-    'Pharma Translation (Life Sciences)',
-    'Transcription Services',
-    'Survey & Questionnaire Translation',
-    'Localization Services',
-    'Testing Services (LQA)',
-    'Multilingual DTP',
-    'Legal & Document Translation',
-    'Other Specialized Services'
+  // Grouped service options: Translation Services vs Business Outsourcing
+  const serviceOptions = [
+    {
+      group: 'Language Translation Services',
+      items: [
+        'Language Translation Services (General)',
+        'Document Translation',
+        'Business & Corporate Translation',
+        'Language Localization',
+        'Audio & Video Transcription',
+        'Multilingual Communication',
+        'Survey Translation'
+      ]
+    },
+    {
+      group: 'Business Outsourcing Solutions',
+      items: [
+        'Business Outsourcing Solutions (General)',
+        'Business Process Outsourcing (BPO)',
+        'Back-Office Support',
+        'Administrative Support',
+        'Data Processing',
+        'Operational Assistance',
+        'Customized Outsourcing Solutions'
+      ]
+    }
   ];
+
+  // Helper: Determine if selected service is translation-related
+  const isTranslationSelected = () => {
+    if (!formData.serviceRequired) return false;
+    const s = formData.serviceRequired.toLowerCase();
+    return s.includes('translation') || s.includes('localization') || s.includes('transcription') || s.includes('multilingual');
+  };
 
   const popularLanguages = [
     'English',
     'Hindi',
+    'Telugu',
     'German',
     'French',
     'Spanish',
@@ -53,20 +76,17 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
     'Marathi',
     'Gujarati',
     'Tamil',
-    'Telugu',
+    'Kannada',
+    'Malayalam',
     'Bengali',
-    'Russian',
-    'Portuguese',
-    'Italian',
-    'Korean',
-    'Other (Specify in notes)'
+    'Other (Specify in project notes)'
   ];
 
   const validate = () => {
     const errs = {};
     if (!formData.fullName.trim()) errs.fullName = 'Please enter your full name';
     if (!formData.email.trim()) {
-      errs.email = 'Email address is required';
+      errs.email = 'Business email address is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       errs.email = 'Please enter a valid email address';
     }
@@ -78,15 +98,21 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
     }
 
     if (!formData.serviceRequired) {
-      errs.serviceRequired = 'Please select a service';
+      errs.serviceRequired = 'Please select a required service';
     }
 
-    if (!formData.sourceLanguage) {
-      errs.sourceLanguage = 'Please specify source language';
+    // Only validate language fields when a translation service is selected
+    if (isTranslationSelected()) {
+      if (!formData.sourceLanguage) {
+        errs.sourceLanguage = 'Please specify source language';
+      }
+      if (!formData.targetLanguage) {
+        errs.targetLanguage = 'Please specify target language';
+      }
     }
 
-    if (!formData.targetLanguage) {
-      errs.targetLanguage = 'Please specify target language';
+    if (!formData.projectDescription.trim()) {
+      errs.projectDescription = 'Please provide a brief project overview';
     }
 
     setErrors(errs);
@@ -130,10 +156,9 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
-      // Simulate API processing delay
       setTimeout(() => {
         setIsSubmitting(false);
-        const quoteRef = 'LNB-Q-' + Math.floor(100000 + Math.random() * 900000);
+        const quoteRef = 'IBS-Q-' + Math.floor(100000 + Math.random() * 900000);
         const details = {
           ...formData,
           fileName: uploadedFile ? uploadedFile.name : 'No file uploaded',
@@ -168,287 +193,283 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
     <section id="quote" className="quote-section">
       <div className="container">
         <div className="text-center">
-          <span className="section-tag yellow">Instant Proposal</span>
+          <span className="section-tag">Instant Proposal</span>
           <h2 className="section-title">
-            Get a Customized <span>Quotation</span>
+            Request a <span>Free Quote</span>
           </h2>
           <p className="section-subtitle">
-            Upload your project details or documents to receive a guaranteed fixed-price quote and timeline within 60 minutes.
+            Submit your translation or business outsourcing requirements to receive a customized project proposal and estimated timeline from IBS.
           </p>
         </div>
 
         <div className="quote-grid">
-          {/* Left Column: Guarantees & Direct Line */}
+          {/* Left Column: Information & Guarantees */}
           <div className="quote-info-card">
             <div>
               <span className="section-tag light" style={{ marginBottom: 12 }}>
-                Transparent Pricing
+                Hyderabad, India
               </span>
-              <h3 className="quote-info-title">Fast & Confidential Project Estimates</h3>
+              <h3 className="quote-info-title">Tailored Solutions for Your Enterprise</h3>
               <p className="quote-info-desc">
-                Whether you need a one-page certificate or a 500-page clinical trial protocol, our project managers provide transparent per-word rates with no hidden fees.
+                From specialized language translation to ongoing operational and back-office outsourcing, IBS provides structured service delivery and transparent estimates.
               </p>
             </div>
 
             <div className="quote-guarantees-list">
               <div className="guarantee-item">
                 <Clock size={20} />
-                <span>60-Minute Rapid Response Time</span>
+                <span>Prompt Project Assessment & Response</span>
               </div>
               <div className="guarantee-item">
                 <ShieldCheck size={20} />
-                <span>Non-Disclosure Agreement (NDA) Protected</span>
+                <span>Strict Non-Disclosure & Confidentiality</span>
               </div>
               <div className="guarantee-item">
-                <CheckCircle2 size={20} />
-                <span>Zero Obligation Free Estimate</span>
-              </div>
-              <div className="guarantee-item">
-                <HelpCircle size={20} />
-                <span>Dedicated Linguist & Project Lead</span>
+                <Building2 size={20} />
+                <span>Hyderabad Operational Headquarters</span>
               </div>
             </div>
 
-            <div className="quote-contact-snippet">
-              <span className="quote-snippet-label">Need urgent assistance?</span>
-              <a href="tel:+919711552550" className="quote-snippet-link">
-                <PhoneCall size={18} style={{ color: '#FFB900' }} />
-                <span>Call Directly: +91 9711552550</span>
-              </a>
-              <span style={{ fontSize: '0.78rem', color: '#cbd5e1' }}>
-                Mon - Sat: 9:00 AM - 7:00 PM IST
+            <div className="quote-helpline-box">
+              <span className="label">Need Immediate Project Guidance?</span>
+              <span className="number" style={{ fontSize: '1.05rem', color: '#14B8A6' }}>
+                Complete the quotation form for direct priority evaluation.
               </span>
+              <span className="sub">Mon - Sat: 9:00 AM - 7:00 PM IST</span>
             </div>
           </div>
 
-          {/* Right Column: Quotation Request Form */}
+          {/* Right Column: Dynamic Quotation Form */}
           <div className="quote-form-card">
             {submittedQuote ? (
-              <div className="success-banner-box">
-                <div className="success-icon-big">
-                  <CheckCircle2 size={36} />
+              <div className="quote-success-state">
+                <div className="success-icon-wrapper">
+                  <CheckCircle2 size={48} style={{ color: '#0D9488' }} />
                 </div>
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a' }}>
-                  Quotation Request Received!
-                </h3>
-                <p style={{ color: '#475569', fontSize: '0.92rem', maxWidth: 440 }}>
-                  Thank you, <strong>{submittedQuote.fullName}</strong>. Your request reference number is <strong style={{ color: '#0755A5' }}>{submittedQuote.referenceId}</strong>. Our localization specialist will email you the official estimate shortly at <strong>{submittedQuote.email}</strong>.
+                <h3 className="success-title">Quotation Request Received</h3>
+                <p className="success-msg">
+                  Thank you, <strong>{submittedQuote.fullName}</strong>. Your quotation request has been recorded with reference number:
                 </p>
-
-                <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 8, padding: 14, width: '100%', textAlign: 'left', fontSize: '0.84rem' }}>
+                <div className="quote-ref-badge">{submittedQuote.referenceId}</div>
+                <div className="quote-summary-box">
                   <div><strong>Service:</strong> {submittedQuote.serviceRequired}</div>
-                  <div><strong>Language Pair:</strong> {submittedQuote.sourceLanguage} → {submittedQuote.targetLanguage}</div>
-                  <div><strong>Attached File:</strong> {submittedQuote.fileName} ({submittedQuote.fileSize})</div>
+                  {isTranslationSelected() && (
+                    <div><strong>Languages:</strong> {submittedQuote.sourceLanguage} → {submittedQuote.targetLanguage}</div>
+                  )}
+                  <div><strong>Email:</strong> {submittedQuote.email}</div>
+                  <div><strong>Phone:</strong> {submittedQuote.phoneNumber}</div>
+                  {submittedQuote.fileName !== 'No file uploaded' && (
+                    <div><strong>Attached Document:</strong> {submittedQuote.fileName} ({submittedQuote.fileSize})</div>
+                  )}
                 </div>
-
-                <button
-                  type="button"
-                  className="btn-yellow"
-                  style={{ marginTop: 12 }}
-                  onClick={handleResetForm}
-                >
-                  Submit Another Project
+                <button type="button" className="btn-blue-outline" onClick={handleResetForm} style={{ marginTop: 20 }}>
+                  <span>Submit Another Request</span>
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
-                {/* Row 1: Name & Email */}
-                <div className="form-grid-row">
-                  <div className="form-field no-margin">
+                <div className="form-fields-grid">
+                  {/* Full Name */}
+                  <div className="form-group">
                     <label className="form-label" htmlFor="fullName">
                       Full Name <span className="req">*</span>
                     </label>
                     <input
+                      type="text"
                       id="fullName"
                       name="fullName"
-                      type="text"
                       className={`form-input ${errors.fullName ? 'error' : ''}`}
-                      placeholder="e.g. Dr. Rajesh Sharma"
+                      placeholder="e.g. Rajesh Sharma"
                       value={formData.fullName}
                       onChange={handleChange}
                     />
-                    {errors.fullName && <span className="error-msg">{errors.fullName}</span>}
+                    {errors.fullName && <span className="error-text">{errors.fullName}</span>}
                   </div>
 
-                  <div className="form-field no-margin">
+                  {/* Business Email */}
+                  <div className="form-group">
                     <label className="form-label" htmlFor="email">
-                      Email Address <span className="req">*</span>
+                      Business Email <span className="req">*</span>
                     </label>
                     <input
+                      type="email"
                       id="email"
                       name="email"
-                      type="email"
                       className={`form-input ${errors.email ? 'error' : ''}`}
-                      placeholder="e.g. name@company.com"
+                      placeholder="e.g. rajesh@company.com"
                       value={formData.email}
                       onChange={handleChange}
                     />
-                    {errors.email && <span className="error-msg">{errors.email}</span>}
+                    {errors.email && <span className="error-text">{errors.email}</span>}
                   </div>
-                </div>
 
-                {/* Row 2: Phone & Service */}
-                <div className="form-grid-row">
-                  <div className="form-field no-margin">
+                  {/* Phone Number */}
+                  <div className="form-group">
                     <label className="form-label" htmlFor="phoneNumber">
                       Phone Number <span className="req">*</span>
                     </label>
                     <input
+                      type="tel"
                       id="phoneNumber"
                       name="phoneNumber"
-                      type="tel"
                       className={`form-input ${errors.phoneNumber ? 'error' : ''}`}
                       placeholder="e.g. +91 98765 43210"
                       value={formData.phoneNumber}
                       onChange={handleChange}
                     />
-                    {errors.phoneNumber && <span className="error-msg">{errors.phoneNumber}</span>}
+                    {errors.phoneNumber && <span className="error-text">{errors.phoneNumber}</span>}
                   </div>
 
-                  <div className="form-field no-margin">
+                  {/* Service Required Dropdown */}
+                  <div className="form-group">
                     <label className="form-label" htmlFor="serviceRequired">
                       Service Required <span className="req">*</span>
                     </label>
                     <select
                       id="serviceRequired"
                       name="serviceRequired"
-                      className={`form-select ${errors.serviceRequired ? 'error' : ''}`}
+                      className={`form-input ${errors.serviceRequired ? 'error' : ''}`}
                       value={formData.serviceRequired}
                       onChange={handleChange}
                     >
-                      <option value="">-- Select Service --</option>
-                      {servicesList.map((srv) => (
-                        <option key={srv} value={srv}>
-                          {srv}
-                        </option>
+                      <option value="">-- Select Required Service --</option>
+                      {serviceOptions.map((grp) => (
+                        <optgroup key={grp.group} label={grp.group}>
+                          {grp.items.map((srv) => (
+                            <option key={srv} value={srv}>
+                              {srv}
+                            </option>
+                          ))}
+                        </optgroup>
                       ))}
                     </select>
-                    {errors.serviceRequired && <span className="error-msg">{errors.serviceRequired}</span>}
-                  </div>
-                </div>
-
-                {/* Row 3: Source & Target Language */}
-                <div className="form-grid-row">
-                  <div className="form-field no-margin">
-                    <label className="form-label" htmlFor="sourceLanguage">
-                      Source Language <span className="req">*</span>
-                    </label>
-                    <select
-                      id="sourceLanguage"
-                      name="sourceLanguage"
-                      className={`form-select ${errors.sourceLanguage ? 'error' : ''}`}
-                      value={formData.sourceLanguage}
-                      onChange={handleChange}
-                    >
-                      {popularLanguages.map((lang) => (
-                        <option key={lang} value={lang}>
-                          {lang}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.sourceLanguage && <span className="error-msg">{errors.sourceLanguage}</span>}
+                    {errors.serviceRequired && <span className="error-text">{errors.serviceRequired}</span>}
                   </div>
 
-                  <div className="form-field no-margin">
-                    <label className="form-label" htmlFor="targetLanguage">
-                      Target Language <span className="req">*</span>
-                    </label>
-                    <select
-                      id="targetLanguage"
-                      name="targetLanguage"
-                      className={`form-select ${errors.targetLanguage ? 'error' : ''}`}
-                      value={formData.targetLanguage}
-                      onChange={handleChange}
-                    >
-                      <option value="">-- Select Target Language --</option>
-                      {popularLanguages.map((lang) => (
-                        <option key={lang} value={lang}>
-                          {lang}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.targetLanguage && <span className="error-msg">{errors.targetLanguage}</span>}
-                  </div>
-                </div>
-
-                {/* Project Description */}
-                <div className="form-field">
-                  <label className="form-label" htmlFor="projectDescription">
-                    Project Description (Scope, word count, or deadlines)
-                  </label>
-                  <textarea
-                    id="projectDescription"
-                    name="projectDescription"
-                    rows="3"
-                    className="form-textarea"
-                    placeholder="Briefly describe your requirements, expected deadline, or specific formatting needs..."
-                    value={formData.projectDescription}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                {/* Upload Document Field */}
-                <div className="form-field">
-                  <label className="form-label">
-                    <span>Upload Document (Optional)</span>
-                    <span style={{ fontSize: '0.72rem', color: '#64748b' }}>PDF, DOCX, XLSX, TXT (Max 25MB)</span>
-                  </label>
-
-                  <div
-                    className={`file-upload-box ${dragActive ? 'drag-active' : ''}`}
-                    onDragEnter={handleDrag}
-                    onDragLeave={handleDrag}
-                    onDragOver={handleDrag}
-                    onDrop={handleDrop}
-                    onClick={() => document.getElementById('docUploadInput').click()}
-                  >
-                    <input
-                      id="docUploadInput"
-                      type="file"
-                      style={{ display: 'none' }}
-                      onChange={handleFileChange}
-                      accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip"
-                    />
-                    <div className="file-upload-inner">
-                      <UploadCloud className="upload-icon" size={32} />
-                      <span className="upload-title">
-                        {uploadedFile ? 'Click to replace document' : 'Drag & drop your files here, or browse'}
-                      </span>
-                      <span className="upload-hint">100% secure with enterprise-grade encryption</span>
-                    </div>
-                  </div>
-
-                  {uploadedFile && (
-                    <div style={{ textAlign: 'center' }}>
-                      <span className="selected-file-pill">
-                        <FileCheck size={14} />
-                        <span>{uploadedFile.name} ({(uploadedFile.size / 1024).toFixed(1)} KB)</span>
-                        <button
-                          type="button"
-                          className="file-remove-btn"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setUploadedFile(null);
-                          }}
-                          aria-label="Remove uploaded file"
+                  {/* Conditional Language Fields: Displayed ONLY for translation services */}
+                  {isTranslationSelected() && (
+                    <>
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="sourceLanguage">
+                          Source Language <span className="req">*</span>
+                        </label>
+                        <select
+                          id="sourceLanguage"
+                          name="sourceLanguage"
+                          className={`form-input ${errors.sourceLanguage ? 'error' : ''}`}
+                          value={formData.sourceLanguage}
+                          onChange={handleChange}
                         >
-                          <X size={14} />
-                        </button>
-                      </span>
-                    </div>
+                          {popularLanguages.map((lang) => (
+                            <option key={lang} value={lang}>
+                              {lang}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.sourceLanguage && <span className="error-text">{errors.sourceLanguage}</span>}
+                      </div>
+
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="targetLanguage">
+                          Target Language <span className="req">*</span>
+                        </label>
+                        <select
+                          id="targetLanguage"
+                          name="targetLanguage"
+                          className={`form-input ${errors.targetLanguage ? 'error' : ''}`}
+                          value={formData.targetLanguage}
+                          onChange={handleChange}
+                        >
+                          <option value="">-- Select Target Language --</option>
+                          {popularLanguages.map((lang) => (
+                            <option key={lang} value={lang}>
+                              {lang}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.targetLanguage && <span className="error-text">{errors.targetLanguage}</span>}
+                      </div>
+                    </>
                   )}
+
+                  {/* Project Description */}
+                  <div className="form-group" style={{ gridColumn: 'span 2' }}>
+                    <label className="form-label" htmlFor="projectDescription">
+                      Project Description & Requirements <span className="req">*</span>
+                    </label>
+                    <textarea
+                      id="projectDescription"
+                      name="projectDescription"
+                      rows={3}
+                      className={`form-input ${errors.projectDescription ? 'error' : ''}`}
+                      placeholder="Please describe your document scope, volume, expected deadlines, or specific outsourcing workflow..."
+                      value={formData.projectDescription}
+                      onChange={handleChange}
+                    />
+                    {errors.projectDescription && <span className="error-text">{errors.projectDescription}</span>}
+                  </div>
+
+                  {/* File Upload (Optional) */}
+                  <div className="form-group" style={{ gridColumn: 'span 2' }}>
+                    <label className="form-label">
+                      Attach Reference Document <span style={{ fontWeight: 400, color: '#64748b' }}>(Optional)</span>
+                    </label>
+                    <div
+                      className={`file-drop-zone ${dragActive ? 'active' : ''}`}
+                      onDragEnter={handleDrag}
+                      onDragLeave={handleDrag}
+                      onDragOver={handleDrag}
+                      onDrop={handleDrop}
+                    >
+                      <input
+                        type="file"
+                        id="quoteFileUpload"
+                        style={{ display: 'none' }}
+                        onChange={handleFileChange}
+                        accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.ppt,.pptx,.zip"
+                      />
+                      {uploadedFile ? (
+                        <div className="file-attached-info">
+                          <FileCheck size={28} style={{ color: '#0D9488' }} />
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div className="file-name" title={uploadedFile.name}>{uploadedFile.name}</div>
+                            <div className="file-size">{(uploadedFile.size / 1024).toFixed(1)} KB</div>
+                          </div>
+                          <button
+                            type="button"
+                            className="btn-remove-file"
+                            onClick={() => setUploadedFile(null)}
+                            title="Remove file"
+                          >
+                            <X size={16} />
+                          </button>
+                        </div>
+                      ) : (
+                        <label htmlFor="quoteFileUpload" className="drop-zone-content">
+                          <UploadCloud size={30} style={{ color: '#0D9488', margin: '0 auto 6px' }} />
+                          <span className="drop-title">Click to upload or drag & drop documents</span>
+                          <span className="drop-sub">Supported formats: PDF, Word (DOCX), Excel, PPT, TXT, ZIP</span>
+                        </label>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className="btn-yellow"
-                  style={{ width: '100%', padding: '14px', fontSize: '1.02rem' }}
-                  disabled={isSubmitting}
-                >
-                  <Send size={18} />
-                  <span>{isSubmitting ? 'Processing Request...' : 'Submit Request'}</span>
-                </button>
+                <div className="quote-form-footer">
+                  <div className="privacy-reassurance">
+                    <ShieldCheck size={16} style={{ color: '#0D9488' }} />
+                    <span>All client materials are treated with strict confidentiality.</span>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn-yellow quote-submit-btn"
+                    disabled={isSubmitting}
+                  >
+                    <span>{isSubmitting ? 'Processing Request...' : 'Get a Free Quote'}</span>
+                    <Send size={16} />
+                  </button>
+                </div>
               </form>
             )}
           </div>
@@ -457,4 +478,3 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
     </section>
   );
 }
-

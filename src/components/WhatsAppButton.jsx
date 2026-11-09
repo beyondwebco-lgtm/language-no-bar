@@ -2,21 +2,25 @@ import React from 'react';
 import { MessageCircle } from 'lucide-react';
 
 export default function WhatsAppButton() {
-  const phoneNumber = '919711552550';
-  const message = encodeURIComponent('Hello Language No Bar team, I would like to inquire about your professional translation and language services.');
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+  const handleClick = (e) => {
+    e.preventDefault();
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      contactEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <a
-      href={whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+      href="#contact"
+      onClick={handleClick}
       className="whatsapp-floating-btn"
-      aria-label="Chat on WhatsApp with Language No Bar"
+      aria-label="Contact IBS Support"
+      title="Official WhatsApp channel being configured. Click to send an inquiry."
+      style={{ backgroundColor: '#0D9488' }}
     >
-      <MessageCircle size={32} />
-      <span className="whatsapp-tooltip">Chat with our Translation Team</span>
+      <MessageCircle size={30} />
+      <span className="whatsapp-tooltip">Contact IBS Support</span>
     </a>
   );
 }
-

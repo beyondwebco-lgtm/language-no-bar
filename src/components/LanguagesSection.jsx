@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeftRight, Globe, Layers, ArrowRight } from 'lucide-react';
+import { ArrowLeftRight, Globe, ArrowRight } from 'lucide-react';
 import { FEATURED_LANGUAGE_PAIRS } from '../data/languagesData';
 
 export default function LanguagesSection({ onOpenAllLanguages, onSelectPair }) {
@@ -7,16 +7,16 @@ export default function LanguagesSection({ onOpenAllLanguages, onSelectPair }) {
     <section id="languages" className="languages-section">
       <div className="container">
         <div className="text-center">
-          <span className="section-tag">Global & Regional Reach</span>
+          <span className="section-tag">Multilingual Capability</span>
           <h2 className="section-title">
-            Languages We <span>Support</span>
+            Connecting Businesses Across <span>Languages</span>
           </h2>
           <p className="section-subtitle">
-            We provide seamless bidirectional translation across more than 150 international and regional Indian language pairs, powered by certified native translators.
+            Facilitating clear communication across Indian regional and major international languages to support enterprise growth and cross-border collaboration.
           </p>
         </div>
 
-        {/* 9 Language Pair Cards */}
+        {/* 9 Language Pair Cards (Showcasing Hindi, English, French, Spanish, Arabic, German, Japanese, Chinese, Marathi, Gujarati) */}
         <div className="language-cards-grid">
           {FEATURED_LANGUAGE_PAIRS.map((item) => (
             <div
@@ -24,18 +24,24 @@ export default function LanguagesSection({ onOpenAllLanguages, onSelectPair }) {
               className="lang-pair-card"
               role="button"
               tabIndex={0}
-              onClick={() => onSelectPair && onSelectPair(item)}
+              onClick={() => {
+                if (onSelectPair) onSelectPair(item);
+              }}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') onSelectPair && onSelectPair(item);
+                if (e.key === 'Enter' && onSelectPair) {
+                  onSelectPair(item);
+                }
               }}
             >
               <div className="lang-pair-card-header">
                 <div className="flags-display">
                   <span>{item.flagA}</span>
-                  <ArrowLeftRight size={14} style={{ color: '#0755A5' }} />
+                  <ArrowLeftRight size={14} style={{ color: '#0D9488' }} />
                   <span>{item.flagB}</span>
                 </div>
-                <span className="lang-region-tag">{item.region}</span>
+                <span className="lang-region-tag" style={{ color: '#0D9488', backgroundColor: 'rgba(13, 148, 136, 0.08)' }}>
+                  {item.region}
+                </span>
               </div>
 
               <h3 className="lang-pair-title">{item.pair}</h3>
@@ -43,7 +49,7 @@ export default function LanguagesSection({ onOpenAllLanguages, onSelectPair }) {
 
               <div className="lang-pair-meta">
                 <div className="lang-meta-row">
-                  <span className="lang-meta-label">Demographics:</span>
+                  <span className="lang-meta-label">Reach:</span>
                   <span className="lang-meta-val">{item.speakers}</span>
                 </div>
                 <div className="lang-meta-row">
@@ -55,8 +61,8 @@ export default function LanguagesSection({ onOpenAllLanguages, onSelectPair }) {
           ))}
         </div>
 
-        {/* View All Languages Button */}
-        <div className="text-center">
+        {/* Catalog Button & Illustrative Notice */}
+        <div className="text-center" style={{ marginTop: 24 }}>
           <button
             type="button"
             className="btn-blue-outline"
@@ -64,12 +70,15 @@ export default function LanguagesSection({ onOpenAllLanguages, onSelectPair }) {
             onClick={onOpenAllLanguages}
           >
             <Globe size={18} />
-            <span>View All 150+ Supported Languages</span>
+            <span>Explore Language Catalog</span>
             <ArrowRight size={16} />
           </button>
+
+          <p className="languages-disclaimer-note" style={{ fontSize: '0.8rem', color: '#64748b', marginTop: 12 }}>
+            * Note: Language pairs and capabilities displayed are illustrative offerings subject to final project scope confirmation by IBS.
+          </p>
         </div>
       </div>
     </section>
   );
 }
-

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
+import IBSLogo from './IBSLogo';
 
 export default function Navbar({ onOpenQuote }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,7 +11,7 @@ export default function Navbar({ onOpenQuote }) {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['home', 'about', 'services', 'quality', 'languages', 'quote', 'contact', 'blog'];
+      const sections = ['home', 'about', 'founder', 'services', 'quality', 'languages', 'quote', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
@@ -33,6 +34,7 @@ export default function Navbar({ onOpenQuote }) {
   const navItems = [
     { label: 'Home', href: '#home', id: 'home' },
     { label: 'About Us', href: '#about', id: 'about' },
+    { label: 'Founder', href: '#founder', id: 'founder' },
     { label: 'Services', href: '#services', id: 'services' },
     { label: 'Quality Policy', href: '#quality', id: 'quality' },
     { label: 'Languages', href: '#languages', id: 'languages' },
@@ -58,21 +60,9 @@ export default function Navbar({ onOpenQuote }) {
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-container">
-        {/* Left Side: Logo & Tagline */}
-        <a href="#home" className="brand-wrapper" onClick={(e) => handleNavClick(e, '#home')}>
-          <div className="brand-main">
-            <div className="brand-logo-icon">
-              <Globe size={24} />
-            </div>
-            <div className="brand-text-col">
-              <span className="brand-title">
-                Language <span>No Bar</span>
-              </span>
-              <span className="brand-tagline">
-                Breaking Language Barriers, Connecting the World.
-              </span>
-            </div>
-          </div>
+        {/* Left Side: IBS Brand Logo */}
+        <a href="#home" className="brand-wrapper" onClick={(e) => handleNavClick(e, '#home')} aria-label="IBS Home">
+          <IBSLogo variant="light" size="default" />
         </a>
 
         {/* Right Side Desktop Navigation */}
@@ -90,63 +80,50 @@ export default function Navbar({ onOpenQuote }) {
           ))}
         </ul>
 
-        {/* Right Side Quote Action & Hamburger */}
-        <div className="nav-cta-col">
+        {/* Header Action Button */}
+        <div className="navbar-action">
           <button
             type="button"
-            className="btn-yellow"
+            className="btn-yellow nav-cta-btn"
             onClick={() => {
-              if (onOpenQuote) {
-                onOpenQuote();
-              } else {
+              if (onOpenQuote) onOpenQuote();
+              else {
                 const el = document.getElementById('quote');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }
             }}
           >
-            <span>GET A QUOTE</span>
-            <ArrowRight size={16} />
-          </button>
-
-          <button
-            type="button"
-            className="hamburger-btn"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle Navigation Menu"
-          >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <span>Get a Free Quote</span>
+            <ArrowRight size={15} />
           </button>
         </div>
+
+        {/* Mobile Hamburger Toggle Button */}
+        <button
+          type="button"
+          className="mobile-toggle-btn"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+        >
+          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+        </button>
       </div>
 
-      {/* Mobile Drawer Overlay */}
-      <div
-        className={`mobile-nav-overlay ${mobileMenuOpen ? 'open' : ''}`}
-        onClick={() => setMobileMenuOpen(false)}
-      />
-
       {/* Mobile Drawer Menu */}
-      <div className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-nav-header">
-          <div className="brand-main">
-            <div className="brand-logo-icon" style={{ width: 34, height: 34 }}>
-              <Globe size={20} />
-            </div>
-            <span className="brand-title" style={{ fontSize: '1.1rem' }}>
-              Language <span>No Bar</span>
-            </span>
-          </div>
+      <div className={`mobile-menu-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-drawer-header">
+          <IBSLogo variant="light" size="compact" />
           <button
             type="button"
+            className="mobile-close-icon"
             onClick={() => setMobileMenuOpen(false)}
-            style={{ color: '#64748b' }}
             aria-label="Close menu"
           >
-            <X size={24} />
+            <X size={22} />
           </button>
         </div>
 
-        <ul className="mobile-nav-links">
+        <ul className="mobile-nav-list">
           {navItems.map((item) => (
             <li key={item.id}>
               <a
@@ -160,25 +137,25 @@ export default function Navbar({ onOpenQuote }) {
           ))}
         </ul>
 
-        <div className="mobile-nav-footer">
+        <div className="mobile-drawer-footer">
           <button
             type="button"
             className="btn-yellow"
-            style={{ width: '100%' }}
+            style={{ width: '100%', justifyContent: 'center' }}
             onClick={() => {
               setMobileMenuOpen(false);
-              const el = document.getElementById('quote');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              if (onOpenQuote) onOpenQuote();
+              else {
+                const el = document.getElementById('quote');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }
             }}
           >
-            GET A QUOTE
+            <span>Get a Free Quote</span>
+            <ArrowRight size={16} />
           </button>
-          <p style={{ fontSize: '0.78rem', color: '#64748b', textAlign: 'center' }}>
-            Phone: +91 9711552550
-          </p>
         </div>
       </div>
     </nav>
   );
 }
-

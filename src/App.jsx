@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import CategoryBanners from './components/CategoryBanners';
 import MainServices from './components/MainServices';
 import AboutUs from './components/AboutUs';
+import FounderSection from './components/FounderSection';
 import QualityPolicy from './components/QualityPolicy';
 import LanguagesSection from './components/LanguagesSection';
 import GetAQuote from './components/GetAQuote';
@@ -44,8 +45,10 @@ export default function App() {
       title: category.title,
       description: category.description,
       deliverables: category.features,
-      tag: 'Category Overview',
-      languages: ['Hindi', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Marathi', 'Gujarati']
+      tag: category.category === 'translation' ? 'Language Translation' : 'Business Outsourcing',
+      languages: category.category === 'translation' 
+        ? ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese', 'Marathi', 'Gujarati']
+        : ['English', 'Hindi', 'Regional Languages']
     });
   };
 
@@ -54,38 +57,41 @@ export default function App() {
   };
 
   const handleSelectLanguagePair = (pair) => {
-    handleOpenQuote('Translation Services', pair.source, pair.target);
+    handleOpenQuote('Document Translation', pair.source, pair.target);
   };
 
   const handleSelectLanguageFromCatalog = (langName) => {
-    handleOpenQuote('Translation Services', 'English', langName);
+    handleOpenQuote('Language Translation Services (General)', 'English', langName);
   };
 
   return (
     <div className="app-root">
-      {/* 1. Top Slim Blue Contact Bar */}
+      {/* 1. Top Slim Contact Bar */}
       <TopContactBar />
 
-      {/* 2. White Navigation Bar (Sticky with Logo & Tagline) */}
+      {/* 2. Navigation Bar with IBS Brand Logo */}
       <Navbar onOpenQuote={() => handleOpenQuote()} />
 
       <main id="main-content">
-        {/* 3. Hero Section */}
+        {/* 3. Hero Section: Bridging Languages. Empowering Businesses. */}
         <Hero onOpenQuote={() => handleOpenQuote()} />
 
-        {/* 4. Six Colorful Category Boxes in One Row on Desktop */}
+        {/* 4. Quick Highlights: 6 Horizontal Category Highlights */}
         <CategoryBanners onSelectCategory={handleCategorySelect} />
 
-        {/* 5. Main Services Cards: Pharma Translation, Transcription, Survey Translation */}
+        {/* 5. Services: Language Translation Services & Business Outsourcing Solutions */}
         <MainServices onExploreService={handleExploreService} />
 
-        {/* 6. About Us Section with World Map Graphic */}
+        {/* 6. About Us: About Innovative Business Solutions */}
         <AboutUs onOpenQuote={() => handleOpenQuote()} />
 
-        {/* 7. Quality Policy & Verified ISO Credentials */}
+        {/* 6b. Founder Section: Meet Our Founder (Abburi Tanuja) */}
+        <FounderSection />
+
+        {/* 7. Quality Policy: Translation Accuracy, QA, Confidentiality & Delivery */}
         <QualityPolicy />
 
-        {/* 8. Languages We Support (9 Cards + Catalog Button) */}
+        {/* 8. Languages Section: Connecting Businesses Across Languages */}
         <LanguagesSection 
           onOpenAllLanguages={() => setLanguagesModalOpen(true)}
           onSelectPair={handleSelectLanguagePair}
@@ -99,14 +105,14 @@ export default function App() {
           prefillTargetLang={quotePrefill.target}
         />
 
-        {/* 10. Contact Us Section with Phone, Email, Form, and Maps */}
+        {/* 10. Contact Us Section: Hyderabad Address, Form, and Maps */}
         <ContactSection />
 
         {/* 11. Blog & Insights Section */}
         <BlogSection onSelectPost={(post) => setSelectedBlogPost(post)} />
       </main>
 
-      {/* 12. Dark Blue Footer */}
+      {/* 12. Corporate Navy Footer */}
       <Footer 
         onOpenQuote={() => handleOpenQuote()}
         onSelectServiceById={(id) => handleOpenQuote(id)}

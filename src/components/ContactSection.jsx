@@ -3,12 +3,10 @@ import {
   Phone, 
   Mail, 
   MapPin, 
-  Clock, 
   Send, 
   Building2, 
   ExternalLink, 
-  CheckCircle2, 
-  Globe 
+  CheckCircle2 
 } from 'lucide-react';
 
 export default function ContactSection() {
@@ -38,9 +36,6 @@ export default function ContactSection() {
     e.preventDefault();
     if (validate()) {
       setSubmitted(true);
-      setTimeout(() => {
-        // keep submitted view or allow reset
-      }, 500);
     }
   };
 
@@ -50,69 +45,73 @@ export default function ContactSection() {
         <div className="text-center">
           <span className="section-tag">Get in Touch</span>
           <h2 className="section-title">
-            Contact <span>Us</span>
+            Contact <span>IBS</span>
           </h2>
           <p className="section-subtitle">
-            Have a question about translation projects, language pairs, or enterprise partnerships? Reach out to our multilingual team today.
+            Have a question about language translation projects, outsourcing solutions, or enterprise partnerships? Reach out to our Hyderabad office today.
           </p>
         </div>
 
         <div className="contact-grid">
-          {/* Left Column: Contact Cards, Google Maps Placeholder, Business Inquiry Info */}
+          {/* Left Column: Contact Cards, Google Maps Integration */}
           <div className="contact-info-col">
             <div className="contact-cards-list">
+              {/* Registered Corporate Office */}
               <div className="contact-item-card">
-                <div className="contact-icon-box">
-                  <Phone size={22} />
-                </div>
-                <div className="contact-details">
-                  <h4>Direct Telephone</h4>
-                  <a href="tel:+919711552550">+91 9711552550</a>
-                  <span className="note">Mon - Sat: 9:00 AM to 7:00 PM IST</span>
-                </div>
-              </div>
-
-              <div className="contact-item-card">
-                <div className="contact-icon-box">
-                  <Mail size={22} />
-                </div>
-                <div className="contact-details">
-                  <h4>Email Inquiries</h4>
-                  <a href="mailto:sales@languagenobar.com">sales@languagenobar.com</a>
-                  <span className="note">Average reply turnaround within 1 hour</span>
-                </div>
-              </div>
-
-              <div className="contact-item-card">
-                <div className="contact-icon-box">
+                <div className="contact-icon-box" style={{ backgroundColor: '#0B2545', color: '#ffffff' }}>
                   <Building2 size={22} />
                 </div>
                 <div className="contact-details">
                   <h4>Corporate Office</h4>
-                  <p>Language No Bar, Sector 63, Noida, NCR Delhi, India</p>
-                  <span className="note">Serving clients across 65+ countries globally</span>
+                  <p><strong>IBS – Innovative Business Solutions</strong></p>
+                  <p>63 B, Sriram Nagar, Kondapur, Hyderabad – 500084, Telangana, India.</p>
+                  <span className="note">Established February 2021 | 5+ Years Experience</span>
+                </div>
+              </div>
+
+              {/* Direct Telephone (Placeholder) */}
+              <div className="contact-item-card">
+                <div className="contact-icon-box" style={{ backgroundColor: '#0D9488', color: '#ffffff' }}>
+                  <Phone size={22} />
+                </div>
+                <div className="contact-details">
+                  <h4>Telephone Inquiries</h4>
+                  <p style={{ color: '#0B2545', fontWeight: 600 }}>+91 (Contact Pending Confirmation)</p>
+                  <span className="note">Mon - Sat: 9:00 AM to 7:00 PM IST (Please use form below)</span>
+                </div>
+              </div>
+
+              {/* Email Inquiries (Placeholder) */}
+              <div className="contact-item-card">
+                <div className="contact-icon-box" style={{ backgroundColor: '#0B2545', color: '#ffffff' }}>
+                  <Mail size={22} />
+                </div>
+                <div className="contact-details">
+                  <h4>Email Inquiries</h4>
+                  <p style={{ color: '#0B2545', fontWeight: 600 }}>contact@ibs-solutions.in</p>
+                  <span className="note">Official business email pending final setup</span>
                 </div>
               </div>
             </div>
 
-            {/* Google Maps Integration Placeholder */}
+            {/* Google Maps Integration for Kondapur, Hyderabad */}
             <div className="map-placeholder-card">
-              <div className="map-embed-mockup">
+              <div className="map-embed-mockup" style={{ background: '#0B2545' }}>
                 <div className="map-grid-lines" />
                 <div className="map-marker-pin">
-                  <div className="map-pin-bubble">
-                    Language No Bar HQ
+                  <div className="map-pin-bubble" style={{ background: '#0D9488', color: '#ffffff' }}>
+                    IBS Hyderabad (Kondapur)
                   </div>
-                  <div className="map-pin-point" />
+                  <div className="map-pin-point" style={{ borderTopColor: '#0D9488' }} />
                 </div>
               </div>
               <div className="map-card-footer">
                 <div className="map-location-text">
-                  <MapPin size={14} style={{ display: 'inline', marginRight: 4, color: '#0755A5' }} />
-                  <span>Noida, NCR Delhi, India</span>
+                  <MapPin size={14} style={{ display: 'inline', marginRight: 4, color: '#0D9488' }} />
+                  <span>Kondapur, Hyderabad – 500084, Telangana</span>
                 </div>
                 <a
-                  href="https://maps.google.com/?q=Language+No+Bar+Noida"
+                  href="https://maps.google.com/?q=63+B+Sriram+Nagar+Kondapur+Hyderabad+500084"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="map-directions-btn"
@@ -128,24 +127,22 @@ export default function ContactSection() {
           <div className="contact-form-card">
             <h3 className="contact-form-title">Send Us a Direct Message</h3>
             <p className="contact-form-subtitle">
-              Fill out this quick inquiry form and our representative will get back to you promptly.
+              Fill in your details below and our team will get in touch with you promptly.
             </p>
 
             {submitted ? (
-              <div className="success-banner-box" style={{ padding: '30px 10px' }}>
-                <div className="success-icon-big">
+              <div className="contact-success-box" style={{ textAlign: 'center', padding: '30px 20px' }}>
+                <div style={{ display: 'inline-flex', padding: 12, borderRadius: '50%', background: '#f0fdfa', color: '#0D9488', marginBottom: 12 }}>
                   <CheckCircle2 size={36} />
                 </div>
-                <h4 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a' }}>
-                  Thank you for contacting us!
-                </h4>
-                <p style={{ color: '#475569', fontSize: '0.92rem' }}>
-                  We have received your message and a team coordinator will reply to <strong>{inquiryData.email}</strong> shortly.
+                <h4 style={{ fontSize: '1.2rem', color: '#0B2545', fontWeight: 700 }}>Thank You for Reaching Out!</h4>
+                <p style={{ fontSize: '0.9rem', color: '#475569', marginTop: 8 }}>
+                  Your message has been successfully submitted. The IBS team will contact you shortly.
                 </p>
                 <button
                   type="button"
                   className="btn-blue-outline"
-                  style={{ marginTop: 14 }}
+                  style={{ marginTop: 16 }}
                   onClick={() => {
                     setSubmitted(false);
                     setInquiryData({ name: '', email: '', subject: '', message: '' });
@@ -156,81 +153,80 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
-                <div className="form-field">
+                <div className="contact-form-group">
                   <label className="form-label" htmlFor="contactName">
-                    Your Name <span className="req">*</span>
+                    Your Full Name <span className="req">*</span>
                   </label>
                   <input
-                    id="contactName"
                     type="text"
+                    id="contactName"
                     className={`form-input ${errors.name ? 'error' : ''}`}
-                    placeholder="Enter your full name"
+                    placeholder="e.g. Priyadarshini Rao"
                     value={inquiryData.name}
                     onChange={(e) => {
                       setInquiryData({ ...inquiryData, name: e.target.value });
                       if (errors.name) setErrors({ ...errors, name: '' });
                     }}
                   />
-                  {errors.name && <span className="error-msg">{errors.name}</span>}
+                  {errors.name && <span className="error-text">{errors.name}</span>}
                 </div>
 
-                <div className="form-field">
+                <div className="contact-form-group">
                   <label className="form-label" htmlFor="contactEmail">
-                    Business Email <span className="req">*</span>
+                    Business Email Address <span className="req">*</span>
                   </label>
                   <input
-                    id="contactEmail"
                     type="email"
+                    id="contactEmail"
                     className={`form-input ${errors.email ? 'error' : ''}`}
-                    placeholder="Enter your email address"
+                    placeholder="e.g. priya@enterprise.com"
                     value={inquiryData.email}
                     onChange={(e) => {
                       setInquiryData({ ...inquiryData, email: e.target.value });
                       if (errors.email) setErrors({ ...errors, email: '' });
                     }}
                   />
-                  {errors.email && <span className="error-msg">{errors.email}</span>}
+                  {errors.email && <span className="error-text">{errors.email}</span>}
                 </div>
 
-                <div className="form-field">
+                <div className="contact-form-group">
                   <label className="form-label" htmlFor="contactSubject">
-                    Subject / Project Nature
+                    Subject / Service Area
                   </label>
                   <input
-                    id="contactSubject"
                     type="text"
+                    id="contactSubject"
                     className="form-input"
-                    placeholder="e.g. Life Sciences Localization Inquiry"
+                    placeholder="e.g. Translation Inquiry or BPO Consultation"
                     value={inquiryData.subject}
                     onChange={(e) => setInquiryData({ ...inquiryData, subject: e.target.value })}
                   />
                 </div>
 
-                <div className="form-field">
+                <div className="contact-form-group">
                   <label className="form-label" htmlFor="contactMessage">
-                    Your Message <span className="req">*</span>
+                    Message <span className="req">*</span>
                   </label>
                   <textarea
                     id="contactMessage"
-                    rows="4"
-                    className={`form-textarea ${errors.message ? 'error' : ''}`}
-                    placeholder="How can our language team help you today?"
+                    rows={4}
+                    className={`form-input ${errors.message ? 'error' : ''}`}
+                    placeholder="How can Innovative Business Solutions assist your organization?"
                     value={inquiryData.message}
                     onChange={(e) => {
                       setInquiryData({ ...inquiryData, message: e.target.value });
                       if (errors.message) setErrors({ ...errors, message: '' });
                     }}
                   />
-                  {errors.message && <span className="error-msg">{errors.message}</span>}
+                  {errors.message && <span className="error-text">{errors.message}</span>}
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-yellow"
-                  style={{ width: '100%', padding: '13px' }}
+                  className="btn-yellow contact-submit-btn"
                 >
-                  <Send size={16} />
-                  <span>Send Message</span>
+                  <span>Submit Message</span>
+                  <Send size={15} />
                 </button>
               </form>
             )}
@@ -240,4 +236,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

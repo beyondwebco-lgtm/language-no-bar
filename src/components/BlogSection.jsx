@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
+import { Clock, ArrowRight, BookOpen } from 'lucide-react';
 import { BLOG_POSTS } from '../data/blogData';
 
 export default function BlogSection({ onSelectPost }) {
@@ -7,12 +7,12 @@ export default function BlogSection({ onSelectPost }) {
     <section id="blog" className="blog-section">
       <div className="container">
         <div className="text-center">
-          <span className="section-tag">Knowledge Hub</span>
+          <span className="section-tag">Knowledge & Insights</span>
           <h2 className="section-title">
-            Latest Insights & <span>Articles</span>
+            Industry <span>Insights</span>
           </h2>
           <p className="section-subtitle">
-            Expert perspectives on language localization, pharmaceutical compliance, AI versus human translators, and regional market expansion.
+            Perspectives on translation quality, enterprise operational efficiency, and regional market localization.
           </p>
         </div>
 
@@ -21,13 +21,15 @@ export default function BlogSection({ onSelectPost }) {
             <article key={post.id} className="blog-card">
               <div className="blog-image-wrapper">
                 <img src={post.image} alt={post.title} loading="lazy" />
-                <span className="blog-category-badge">{post.category}</span>
+                <span className="blog-category-badge" style={{ backgroundColor: '#0D9488' }}>
+                  {post.category}
+                </span>
               </div>
 
               <div className="blog-content">
                 <div className="blog-meta-row">
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                    <Calendar size={13} />
+                    <BookOpen size={13} style={{ color: '#0D9488' }} />
                     {post.date}
                   </span>
                   <span>•</span>
@@ -46,7 +48,7 @@ export default function BlogSection({ onSelectPost }) {
                     className="blog-read-more-link"
                     onClick={() => onSelectPost && onSelectPost(post)}
                   >
-                    <span>Read Full Article</span>
+                    <span>Read Topic Overview</span>
                     <ArrowRight size={14} />
                   </button>
                 </div>
@@ -54,8 +56,13 @@ export default function BlogSection({ onSelectPost }) {
             </article>
           ))}
         </div>
+
+        <div className="text-center" style={{ marginTop: 20 }}>
+          <p style={{ fontSize: '0.8rem', color: '#64748b' }}>
+            * Articles represent draft topics and thought-leadership previews curated for IBS.
+          </p>
+        </div>
       </div>
     </section>
   );
 }
-
