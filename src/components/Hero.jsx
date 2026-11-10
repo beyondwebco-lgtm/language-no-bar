@@ -64,7 +64,7 @@ export default function Hero({ onOpenQuote }) {
                 <span className="hero-stat-number">2021</span>
                 <span className="hero-stat-label">Established</span>
               </div>
-              <div className="hero-stat-item" style={{ gridColumn: 'span 2' }}>
+              <div className="hero-stat-item hero-stat-dual">
                 <span className="hero-stat-number" style={{ fontSize: '1.45rem' }}>Dual Focus</span>
                 <span className="hero-stat-label">Translation & Outsourcing Expertise</span>
               </div>

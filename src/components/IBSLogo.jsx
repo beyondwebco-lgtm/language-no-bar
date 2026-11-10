@@ -137,6 +137,7 @@ export default function IBSLogo({ variant = 'light', size = 'default', showSubti
 
         {showSubtitle && (
           <span
+            className="ibs-brand-subtitle"
             style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
               fontSize: dimensions.subSize,

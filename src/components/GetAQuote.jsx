@@ -393,7 +393,7 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                   )}
 
                   {/* Project Description */}
-                  <div className="form-group" style={{ gridColumn: 'span 2' }}>
+                  <div className="form-group span-full">
                     <label className="form-label" htmlFor="projectDescription">
                       Project Description & Requirements <span className="req">*</span>
                     </label>
@@ -410,7 +410,7 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                   </div>
 
                   {/* File Upload (Optional) */}
-                  <div className="form-group" style={{ gridColumn: 'span 2' }}>
+                  <div className="form-group span-full">
                     <label className="form-label">
                       Attach Reference Document <span style={{ fontWeight: 400, color: '#64748b' }}>(Optional)</span>
                     </label>

@@ -31,6 +31,18 @@ export default function Navbar({ onOpenQuote }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const navItems = [
     { label: 'Home', href: '#home', id: 'home' },
     { label: 'About Us', href: '#about', id: 'about' },
@@ -58,72 +70,86 @@ export default function Navbar({ onOpenQuote }) {
   };
 
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="container navbar-container">
-        {/* Left Side: IBS Brand Logo */}
-        <a href="#home" className="brand-wrapper" onClick={(e) => handleNavClick(e, '#home')} aria-label="IBS Home">
-          <IBSLogo variant="light" size="default" />
-        </a>
+    <>
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="container navbar-container">
+          {/* Left Side: IBS Brand Logo */}
+          <a href="#home" className="brand-wrapper" onClick={(e) => handleNavClick(e, '#home')} aria-label="IBS Home">
+            <IBSLogo variant="light" size="default" />
+          </a>
 
-        {/* Right Side Desktop Navigation */}
-        <ul className="nav-links">
-          {navItems.map((item) => (
-            <li key={item.id}>
-              <a
-                href={item.href}
-                className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, item.href)}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+          {/* Right Side Desktop Navigation */}
+          <ul className="nav-links">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={item.href}
+                  className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-        {/* Header Action Button */}
-        <div className="navbar-action">
+          {/* Header Action Button (Desktop) */}
+          <div className="navbar-action">
+            <button
+              type="button"
+              className="btn-yellow nav-cta-btn"
+              onClick={() => {
+                if (onOpenQuote) onOpenQuote();
+                else {
+                  const el = document.getElementById('quote');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              <span>Get a Free Quote</span>
+              <ArrowRight size={15} />
+            </button>
+          </div>
+
+          {/* Mobile Hamburger Toggle Button */}
           <button
             type="button"
-            className="btn-yellow nav-cta-btn"
-            onClick={() => {
-              if (onOpenQuote) onOpenQuote();
-              else {
-                const el = document.getElementById('quote');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+            className="mobile-toggle-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+            aria-expanded={mobileMenuOpen}
           >
-            <span>Get a Free Quote</span>
-            <ArrowRight size={15} />
+            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
+      </nav>
 
-        {/* Mobile Hamburger Toggle Button */}
-        <button
-          type="button"
-          className="mobile-toggle-btn"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-        >
-          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
-      </div>
+      {/* Mobile Drawer Backdrop Overlay */}
+      <div 
+        className={`mobile-nav-overlay ${mobileMenuOpen ? 'open' : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
 
       {/* Mobile Drawer Menu */}
-      <div className={`mobile-menu-drawer ${mobileMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-drawer-header">
+      <aside 
+        className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}
+        aria-label="Mobile Navigation"
+      >
+        <div className="mobile-nav-header">
           <IBSLogo variant="light" size="compact" />
           <button
             type="button"
-            className="mobile-close-icon"
+            className="modal-close-btn"
+            style={{ position: 'static' }}
             onClick={() => setMobileMenuOpen(false)}
-            aria-label="Close menu"
+            aria-label="Close mobile menu"
           >
-            <X size={22} />
+            <X size={20} />
           </button>
         </div>
 
-        <ul className="mobile-nav-list">
+        <ul className="mobile-nav-links">
           {navItems.map((item) => (
             <li key={item.id}>
               <a
@@ -137,7 +163,7 @@ export default function Navbar({ onOpenQuote }) {
           ))}
         </ul>
 
-        <div className="mobile-drawer-footer">
+        <div className="mobile-nav-footer">
           <button
             type="button"
             className="btn-yellow"
@@ -155,7 +181,7 @@ export default function Navbar({ onOpenQuote }) {
             <ArrowRight size={16} />
           </button>
         </div>
-      </div>
-    </nav>
+      </aside>
+    </>
   );
 }
