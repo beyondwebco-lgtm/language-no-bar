@@ -24,6 +24,7 @@ export default function LanguagesSection({ onOpenAllLanguages, onSelectPair }) {
               className="lang-pair-card"
               role="button"
               tabIndex={0}
+              aria-label={`Select ${item.pair} translation service`}
               onClick={() => {
                 if (onSelectPair) onSelectPair(item);
               }}

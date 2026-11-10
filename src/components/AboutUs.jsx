@@ -59,6 +59,7 @@ export default function AboutUs({ onOpenQuote }) {
               <button
                 type="button"
                 className="btn-yellow"
+                aria-label="Request a customized proposal and partner with IBS"
                 onClick={() => {
                   if (onOpenQuote) onOpenQuote();
                   else {

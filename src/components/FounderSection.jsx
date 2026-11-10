@@ -20,7 +20,7 @@ export default function FounderSection() {
           <div className="founder-profile-col">
             <div className="founder-photo-frame">
               {/* Elegant Placeholder Avatar Container */}
-              <div className="founder-avatar-placeholder">
+              <div className="founder-avatar-placeholder" role="img" aria-label="Founder Abburi Tanuja profile photo placeholder">
                 <div className="founder-initials-badge">AT</div>
                 <div className="founder-photo-icon-overlay">
                   <User size={38} strokeWidth={1.8} />

@@ -52,7 +52,7 @@ export default function MainServices({ onExploreService }) {
             Our <span>Services</span>
           </h2>
           <p className="section-subtitle">
-            Delivering professional language translation services and business outsourcing solutions to help organizations communicate effectively and optimize operations.
+            Delivering professional language translation services and business process outsourcing (BPO) solutions in Hyderabad, Telangana to help organizations communicate effectively and optimize operations across India.
           </p>
 
           {/* Category Tabs: Language Translation vs. Business Outsourcing */}
@@ -128,6 +128,7 @@ export default function MainServices({ onExploreService }) {
                     className="btn-blue-outline"
                     style={{ width: '100%', justifyContent: 'center' }}
                     onClick={() => onExploreService && onExploreService(service)}
+                    aria-label={`Explore ${service.title} details and enterprise use cases`}
                   >
                     <span>Explore Details</span>
                     <ArrowRight size={16} />

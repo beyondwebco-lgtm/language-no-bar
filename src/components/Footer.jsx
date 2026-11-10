@@ -59,13 +59,13 @@ export default function Footer() {
             </p>
 
             <div className="footer-social-links">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="LinkedIn" style={{ background: 'rgba(255,255,255,0.08)' }}>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="Visit IBS LinkedIn profile" style={{ background: 'rgba(255,255,255,0.08)' }}>
                 <SocialIcons.LinkedIn />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="Twitter" style={{ background: 'rgba(255,255,255,0.08)' }}>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="Visit IBS Twitter profile" style={{ background: 'rgba(255,255,255,0.08)' }}>
                 <SocialIcons.Twitter />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="Facebook" style={{ background: 'rgba(255,255,255,0.08)' }}>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="Visit IBS Facebook profile" style={{ background: 'rgba(255,255,255,0.08)' }}>
                 <SocialIcons.Facebook />
               </a>
             </div>

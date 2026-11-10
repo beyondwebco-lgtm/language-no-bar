@@ -20,6 +20,8 @@ export default function IBSLogo({ variant = 'light', size = 'default' }) {
   };
 
   const height = heights[size] || 50;
+  const imgHeight = isDark ? height - 6 : height;
+  const imgWidth = Math.round(imgHeight * 3.003); // 1024 / 341 ≈ 3.003
 
   if (isDark) {
     return (
@@ -38,15 +40,18 @@ export default function IBSLogo({ variant = 'light', size = 'default' }) {
       >
         <img
           src={ibsLogoImg}
-          alt="IBS – Innovative Business Solutions"
+          alt="IBS – Innovative Business Solutions Logo"
+          width={imgWidth}
+          height={imgHeight}
           style={{
-            height: `${height - 6}px`,
+            height: `${imgHeight}px`,
             width: 'auto',
             maxHeight: '100%',
             objectFit: 'contain',
             display: 'block'
           }}
           loading="eager"
+          decoding="async"
         />
       </div>
     );
@@ -65,15 +70,19 @@ export default function IBSLogo({ variant = 'light', size = 'default' }) {
     >
       <img
         src={ibsLogoImg}
-        alt="IBS – Innovative Business Solutions"
+        alt="IBS – Innovative Business Solutions Logo"
+        width={imgWidth}
+        height={imgHeight}
         style={{
-          height: `${height}px`,
+          height: `${imgHeight}px`,
           width: 'auto',
           maxHeight: '100%',
           objectFit: 'contain',
           display: 'block'
         }}
         loading="eager"
+        decoding="async"
+        fetchPriority="high"
       />
     </div>
   );

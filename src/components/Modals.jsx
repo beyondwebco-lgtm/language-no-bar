@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, ArrowRight, ShieldCheck, Search } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, ShieldCheck, Search, Briefcase, Mail } from 'lucide-react';
 import { ALL_SUPPORTED_LANGUAGES } from '../data/languagesData';
 
 export function ServiceModal({ service, onClose, onSelectQuoteService }) {
   if (!service) return null;
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
       <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="modal-close-btn" onClick={onClose} aria-label="Close modal">
           <X size={20} />
@@ -15,12 +15,30 @@ export function ServiceModal({ service, onClose, onSelectQuoteService }) {
         <span className="modal-header-badge" style={{ backgroundColor: 'rgba(13, 148, 136, 0.1)', color: '#0D9488' }}>
           {service.tag || 'Corporate Solution'}
         </span>
-        <h2 className="modal-title">{service.title}</h2>
+        <h2 id="service-modal-title" className="modal-title">{service.title}</h2>
 
         <div className="modal-body">
           <p className="modal-desc">
             {service.fullDescription || service.description}
           </p>
+
+          {/* Key Enterprise Use Cases */}
+          {service.useCases && service.useCases.length > 0 && (
+            <div>
+              <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <Briefcase size={16} style={{ color: '#0D9488' }} />
+                <span>Key Enterprise Use Cases:</span>
+              </h4>
+              <ul className="modal-checklist" style={{ marginBottom: 16 }}>
+                {service.useCases.map((useCase, idx) => (
+                  <li key={idx} className="modal-checklist-item">
+                    <CheckCircle2 size={16} style={{ color: '#0D9488', flexShrink: 0 }} />
+                    <span>{useCase}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {service.deliverables && (
             <div>
@@ -30,7 +48,7 @@ export function ServiceModal({ service, onClose, onSelectQuoteService }) {
               <ul className="modal-checklist">
                 {service.deliverables.map((item, idx) => (
                   <li key={idx} className="modal-checklist-item">
-                    <CheckCircle2 size={16} style={{ color: '#0D9488' }} />
+                    <CheckCircle2 size={16} style={{ color: '#0B2545', flexShrink: 0 }} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -62,11 +80,12 @@ export function ServiceModal({ service, onClose, onSelectQuoteService }) {
             </div>
           )}
 
-          <div style={{ display: 'flex', gap: 12, marginTop: 10 }}>
+          {/* Action CTAs */}
+          <div style={{ display: 'flex', gap: 12, marginTop: 12, flexWrap: 'wrap' }}>
             <button
               type="button"
               className="btn-yellow"
-              style={{ flex: 1 }}
+              style={{ flex: 1, minWidth: 200, justifyContent: 'center' }}
               onClick={() => {
                 onClose();
                 if (onSelectQuoteService) onSelectQuoteService(service.title);
@@ -74,6 +93,19 @@ export function ServiceModal({ service, onClose, onSelectQuoteService }) {
             >
               <span>Request Quote for {service.title}</span>
               <ArrowRight size={16} />
+            </button>
+            <button
+              type="button"
+              className="btn-blue-outline"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
+              onClick={() => {
+                onClose();
+                const el = document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <Mail size={15} />
+              <span>Contact Office</span>
             </button>
             <button
               type="button"
@@ -117,7 +149,7 @@ export function LanguagesModal({ isOpen, onClose, onSelectLanguage }) {
   const filtered = filterLanguages();
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="languages-modal-title">
       <div className="modal-dialog modal-large" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="modal-close-btn" onClick={onClose} aria-label="Close modal">
           <X size={20} />
@@ -126,7 +158,7 @@ export function LanguagesModal({ isOpen, onClose, onSelectLanguage }) {
         <span className="modal-header-badge" style={{ backgroundColor: 'rgba(13, 148, 136, 0.1)', color: '#0D9488' }}>
           Multilingual Reach
         </span>
-        <h2 className="modal-title">Languages Catalog</h2>
+        <h2 id="languages-modal-title" className="modal-title">Languages Catalog</h2>
         <p className="modal-desc" style={{ marginBottom: 16 }}>
           Explore our language translation and localization capabilities across Indian regional and international languages.
         </p>
@@ -142,6 +174,7 @@ export function LanguagesModal({ isOpen, onClose, onSelectLanguage }) {
               placeholder="Search by language name or native script..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              aria-label="Search languages by name or native script"
             />
           </div>
 
@@ -173,6 +206,14 @@ export function LanguagesModal({ isOpen, onClose, onSelectLanguage }) {
                   onClick={() => {
                     onSelectLanguage(item.name);
                     onClose();
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      onSelectLanguage(item.name);
+                      onClose();
+                    }
                   }}
                   style={{
                     background: '#ffffff',
@@ -225,7 +266,7 @@ export function BlogModal({ post, onClose }) {
   if (!post) return null;
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="blog-modal-title">
       <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="modal-close-btn" onClick={onClose} aria-label="Close modal">
           <X size={20} />
@@ -234,7 +275,7 @@ export function BlogModal({ post, onClose }) {
         <span className="modal-header-badge" style={{ backgroundColor: 'rgba(13, 148, 136, 0.1)', color: '#0D9488' }}>
           {post.category}
         </span>
-        <h2 className="modal-title" style={{ fontSize: '1.45rem' }}>{post.title}</h2>
+        <h2 id="blog-modal-title" className="modal-title" style={{ fontSize: '1.45rem' }}>{post.title}</h2>
 
         <div style={{ display: 'flex', gap: 14, fontSize: '0.8rem', color: '#64748b', marginBottom: 16 }}>
           <span>{post.date}</span>
@@ -248,6 +289,10 @@ export function BlogModal({ post, onClose }) {
           <img
             src={post.image}
             alt={post.title}
+            width={720}
+            height={220}
+            loading="lazy"
+            decoding="async"
             style={{ width: '100%', height: 220, objectFit: 'cover', borderRadius: 8 }}
           />
 

@@ -115,6 +115,7 @@ export default function ContactSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="map-directions-btn"
+                  aria-label="Open IBS office location in Google Maps - 63 B Sriram Nagar, Kondapur, Hyderabad"
                 >
                   <span>Open in Google Maps</span>
                   <ExternalLink size={13} />

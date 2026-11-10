@@ -37,6 +37,7 @@ export default function CategoryBanners({ onSelectCategory }) {
                 }}
                 role="button"
                 tabIndex={0}
+                aria-label={`View ${cat.title} category details`}
                 onKeyDown={(e) => {
                   if ((e.key === 'Enter' || e.key === ' ') && onSelectCategory) {
                     onSelectCategory(cat);

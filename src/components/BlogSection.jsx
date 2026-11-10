@@ -20,7 +20,14 @@ export default function BlogSection({ onSelectPost }) {
           {BLOG_POSTS.map((post) => (
             <article key={post.id} className="blog-card">
               <div className="blog-image-wrapper">
-                <img src={post.image} alt={post.title} loading="lazy" />
+                <img 
+                  src={post.image} 
+                  alt={post.title} 
+                  width={400} 
+                  height={200} 
+                  loading="lazy" 
+                  decoding="async" 
+                />
                 <span className="blog-category-badge" style={{ backgroundColor: '#0D9488' }}>
                   {post.category}
                 </span>
@@ -47,6 +54,7 @@ export default function BlogSection({ onSelectPost }) {
                     type="button"
                     className="blog-read-more-link"
                     onClick={() => onSelectPost && onSelectPost(post)}
+                    aria-label={`Read topic overview for ${post.title}`}
                   >
                     <span>Read Topic Overview</span>
                     <ArrowRight size={14} />

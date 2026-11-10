@@ -14,7 +14,7 @@ export const CATEGORY_SERVICES = [
     bgColor: '#0B2545', // Navy
     textColor: '#ffffff',
     iconName: 'FileText',
-    description: 'Accurate translation of official documents, certificates, and technical materials.',
+    description: 'Accurate translation of official documents, legal agreements, corporate records, and technical materials.',
     features: ['Technical Manuals', 'Legal Documentation', 'Academic & Official Records', 'Multi-Format Delivery']
   },
   {
@@ -24,7 +24,7 @@ export const CATEGORY_SERVICES = [
     bgColor: '#0D9488', // Teal
     textColor: '#ffffff',
     iconName: 'Building2',
-    description: 'Linguistic solutions for enterprise communication, contracts, reports, and presentations.',
+    description: 'Linguistic solutions for enterprise communication, contracts, compliance filings, and presentations.',
     features: ['Business Agreements', 'Financial Reports', 'Marketing Collaterals', 'Internal Communications']
   },
   {
@@ -34,7 +34,7 @@ export const CATEGORY_SERVICES = [
     bgColor: '#14B8A6', // Light Teal
     textColor: '#ffffff',
     iconName: 'Globe',
-    description: 'Cultural and regional adaptation of websites, software interfaces, and marketing content.',
+    description: 'Cultural and regional adaptation of websites, software interfaces, mobile apps, and digital platforms.',
     features: ['Website Localization', 'Software UI/UX', 'Digital Marketing', 'Regional Nuance Alignment']
   },
   {
@@ -44,7 +44,7 @@ export const CATEGORY_SERVICES = [
     bgColor: '#0A2540', // Deep Navy
     textColor: '#ffffff',
     iconName: 'Workflow',
-    description: 'Streamlined outsourcing solutions designed to optimize day-to-day enterprise operations.',
+    description: 'Streamlined BPO services designed to optimize enterprise operations and day-to-day workflow management.',
     features: ['Process Optimization', 'Customer Support Operations', 'Vendor Coordination', 'Performance SLA Tracking']
   },
   {
@@ -75,8 +75,14 @@ export const TRANSLATION_SERVICES = [
     id: 'doc-translation',
     title: 'Document Translation',
     tag: 'Translation Service',
-    description: 'Precise document translation maintaining context, formatting, and industry-specific terminology.',
-    fullDescription: 'IBS provides comprehensive document translation services across official papers, standard operating procedures, manuals, and technical specifications, ensuring conceptual fidelity and structural consistency.',
+    description: 'Professional document translation services in Hyderabad maintaining contextual fidelity, formatting, and industry terminology.',
+    fullDescription: 'IBS provides comprehensive document translation services across official documents, standard operating procedures, user manuals, and technical specifications. Based in Hyderabad, we support enterprises across India with conceptual precision, structural consistency, and format-preserved deliveries.',
+    useCases: [
+      'Legal contracts, court documents & non-disclosure agreements (NDAs)',
+      'Engineering blueprints, user manuals & technical operating procedures',
+      'Corporate annual reports, regulatory compliance & audit filings',
+      'Academic transcripts, official certifications & immigration records'
+    ],
     iconName: 'FileText',
     languages: ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese', 'Marathi', 'Gujarati'],
     deliverables: [
@@ -91,8 +97,14 @@ export const TRANSLATION_SERVICES = [
     id: 'corp-translation',
     title: 'Business & Corporate Translation',
     tag: 'Corporate Solutions',
-    description: 'Professional translation tailored for enterprise communications, financial filings, and cross-border trade.',
-    fullDescription: 'Our business translation services help companies bridge language gaps across multi-market operations. We translate internal policies, shareholder communications, business proposals, and compliance documentation.',
+    description: 'Enterprise language translation services tailored for commercial contracts, financial disclosures, and cross-border trade.',
+    fullDescription: 'Our business translation services help companies bridge language gaps across multi-market operations. Operating from Kondapur, Hyderabad, IBS translates corporate governance policies, shareholder communications, business proposals, and compliance documentation with confidentiality.',
+    useCases: [
+      'Cross-border commercial agreements & partnership memorandums',
+      'Investor decks, balance sheets & financial auditor disclosures',
+      'Corporate governance policies, codes of conduct & HR handbooks',
+      'International trade documents, import/export filings & invoices'
+    ],
     iconName: 'Briefcase',
     languages: ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese', 'Marathi', 'Gujarati'],
     deliverables: [
@@ -107,8 +119,14 @@ export const TRANSLATION_SERVICES = [
     id: 'localization',
     title: 'Language Localization',
     tag: 'Digital Adaptation',
-    description: 'Cultural and linguistic adaptation of software, websites, mobile applications, and digital media.',
-    fullDescription: 'Localization goes beyond literal translation to adapt UI, idiomatic expressions, date/currency formats, and imagery to match regional expectations and cultural context.',
+    description: 'Website localization and cultural adaptation of software UI, mobile applications, and digital marketing assets.',
+    fullDescription: 'Language localization goes beyond literal translation to adapt user interfaces, idiomatic expressions, date and currency formats, and imagery to match regional expectations. IBS assists technology startups and enterprises in Hyderabad and across India to connect genuinely with target demographics.',
+    useCases: [
+      'Corporate website & e-commerce portal multilingual localization',
+      'SaaS platform, mobile app & enterprise software UI string localization',
+      'E-Learning modules, employee training & instructional media',
+      'Digital marketing campaigns, social media ads & regional landing pages'
+    ],
     iconName: 'Globe',
     languages: ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese', 'Marathi', 'Gujarati'],
     deliverables: [
@@ -123,8 +141,14 @@ export const TRANSLATION_SERVICES = [
     id: 'transcription',
     title: 'Audio & Video Transcription',
     tag: 'Media & Audio',
-    description: 'Accurate audio and video transcription with time-stamping, speaker tagging, and clean formatting.',
-    fullDescription: 'IBS transcribes recorded meetings, interviews, webinars, research recordings, and multimedia presentations into clearly formatted, searchable text files.',
+    description: 'Accurate audio and video transcription services with precise time-stamping, speaker tagging, and clean formatting.',
+    fullDescription: 'IBS transcribes recorded corporate meetings, executive interviews, webinars, research focus groups, and multimedia presentations into clearly formatted, searchable text files. Our Hyderabad team delivers clean verbatim or intelligent verbatim transcripts with timestamp fidelity.',
+    useCases: [
+      'Executive board meetings, shareholder calls & quarterly webinars',
+      'Market research focus group discussions & academic research interviews',
+      'Video subtitle creation (SRT, VTT) for corporate training and marketing',
+      'Legal depositions, arbitration hearings & audio evidence documentation'
+    ],
     iconName: 'Mic',
     languages: ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese', 'Marathi', 'Gujarati'],
     deliverables: [
@@ -139,8 +163,14 @@ export const TRANSLATION_SERVICES = [
     id: 'multilingual-comm',
     title: 'Multilingual Communication',
     tag: 'Omnichannel Language',
-    description: 'End-to-end linguistic assistance for customer correspondence, circulars, announcements, and newsletters.',
-    fullDescription: 'Ensure your message resonates across diverse linguistic demographics with seamless communication solutions designed for customer engagement, public notifications, and stakeholder updates.',
+    description: 'Linguistic assistance for customer correspondence, public circulars, announcements, and stakeholder newsletters.',
+    fullDescription: 'Ensure your message resonates across diverse linguistic demographics with seamless multilingual communication solutions. IBS assists organizations in crafting clear customer engagement messages, regional notifications, and public stakeholder updates.',
+    useCases: [
+      'Omnichannel customer support email templates & messaging guidelines',
+      'Public announcements, government circulars & press releases',
+      'Multilingual newsletters, email bulletins & company newsletters',
+      'Regional customer service documentation & localized FAQs'
+    ],
     iconName: 'MessageSquare',
     languages: ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese', 'Marathi', 'Gujarati'],
     deliverables: [
@@ -155,8 +185,14 @@ export const TRANSLATION_SERVICES = [
     id: 'survey-translation',
     title: 'Survey Translation',
     tag: 'Research & Insights',
-    description: 'Careful translation of questionnaires, customer satisfaction surveys, and market research tools.',
-    fullDescription: 'Our survey translation preserves metric validity, response scales, question clarity, and unbiased phrasing across diverse respondent groups.',
+    description: 'Precise translation of questionnaires, customer satisfaction surveys, and market research tools preserving scale metrics.',
+    fullDescription: 'Our survey translation preserves metric validity, Likert response scales, question clarity, and unbiased phrasing across diverse respondent groups. IBS supports consumer research agencies, HR consultancies, and enterprises in conducting multilingual studies across India.',
+    useCases: [
+      'Customer satisfaction (CSAT) & Net Promoter Score (NPS) surveys',
+      'Employee engagement questionnaires & workplace evaluation forms',
+      'Demographic screeners & cross-regional consumer market studies',
+      'Academic research questionnaires & psychometric evaluation forms'
+    ],
     iconName: 'ClipboardList',
     languages: ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese', 'Marathi', 'Gujarati'],
     deliverables: [
@@ -175,8 +211,14 @@ export const OUTSOURCING_SERVICES = [
     id: 'bpo-support',
     title: 'Business Process Outsourcing',
     tag: 'BPO Solutions',
-    description: 'Comprehensive business process management enabling enterprises to focus on their core competencies.',
-    fullDescription: 'IBS provides end-to-end BPO solutions tailored to streamline organizational processes, lower overhead costs, and maintain high standards of service continuity.',
+    description: 'Comprehensive BPO services in Hyderabad enabling organizations to streamline operations and reduce overhead.',
+    fullDescription: 'IBS delivers dependable business process outsourcing (BPO) solutions tailored to optimize enterprise operations, control administrative costs, and maintain high standards of service continuity. Headquartered in Kondapur, Hyderabad, we support growing enterprises with structured SLA-driven workflows.',
+    useCases: [
+      'End-to-end business process workflow mapping & outsourced task execution',
+      'Customer support operations & multichannel ticketing management',
+      'Vendor coordination, purchase order tracking & billing reconciliation',
+      'Operational service level agreement (SLA) monitoring and reporting'
+    ],
     iconName: 'Workflow',
     languages: ['English', 'Hindi', 'Regional Support'],
     deliverables: [
@@ -191,8 +233,14 @@ export const OUTSOURCING_SERVICES = [
     id: 'back-office',
     title: 'Back-Office Support',
     tag: 'Operations',
-    description: 'Dedicated backend operational support for transaction logging, record updates, and workflow management.',
-    fullDescription: 'Keep your organization running smoothly with reliable back-office support handling repetitive administrative tasks, ledger entries, document collation, and file maintenance.',
+    description: 'Reliable back-office outsourcing services for transaction logging, record updates, and administrative workflow management.',
+    fullDescription: 'Keep your organization running smoothly with reliable back-office support handling repetitive administrative tasks, ledger entries, document collation, and file maintenance. IBS provides dedicated teams in Hyderabad to maintain workflow continuity and data hygiene.',
+    useCases: [
+      'Sales order entry, transaction validation & invoice reconciliation',
+      'Customer database updates & CRM data hygiene maintenance',
+      'Inventory tracking, fulfillment coordination & shipment logging',
+      'Routine administrative bookkeeping & compliance documentation'
+    ],
     iconName: 'Layers',
     languages: ['English', 'Hindi', 'Regional Support'],
     deliverables: [
@@ -207,8 +255,14 @@ export const OUTSOURCING_SERVICES = [
     id: 'administrative-support',
     title: 'Administrative Support',
     tag: 'Office Administration',
-    description: 'Professional virtual and administrative assistance for scheduling, documentation, and coordination.',
-    fullDescription: 'Our administrative assistance enables executives and teams to delegate routine organizational workflows, document preparation, correspondence drafting, and scheduling.',
+    description: 'Professional virtual and administrative support services for scheduling, correspondence, and team coordination.',
+    fullDescription: 'Our administrative assistance enables executives and teams to delegate routine organizational workflows, document preparation, correspondence drafting, and scheduling. IBS provides dedicated administrative resources so leadership can focus on core strategic priorities.',
+    useCases: [
+      'Executive calendar coordination, meeting scheduling & appointment setting',
+      'Corporate document formatting, presentation proofing & digital filing',
+      'Email triage, inbox management & structured customer correspondence',
+      'Meeting minutes documentation, action item tracking & team follow-ups'
+    ],
     iconName: 'FileCheck',
     languages: ['English', 'Hindi', 'Regional Support'],
     deliverables: [
@@ -223,8 +277,14 @@ export const OUTSOURCING_SERVICES = [
     id: 'data-processing',
     title: 'Data Processing',
     tag: 'Data Management',
-    description: 'Systematic data extraction, entry, cleansing, normalization, and preparation for analysis.',
-    fullDescription: 'Transform raw data into structured, validated formats. IBS handles large volumes of digital and physical forms, invoices, logs, and database entries with rigorous error checks.',
+    description: 'High-accuracy data processing services including extraction, entry, cleansing, normalization, and validation.',
+    fullDescription: 'Transform raw business data into structured, validated digital assets. IBS handles large volumes of paper and electronic forms, invoices, logs, and database entries with rigorous error checks, strict confidentiality, and systematic verification in Hyderabad.',
+    useCases: [
+      'Multi-format high-volume data entry from forms, PDFs, scans & sheets',
+      'Database deduplication, cleansing, normalization & validation',
+      'Invoice, receipt & purchase order digitization with automated checks',
+      'Structured catalog updates & product information management (PIM)'
+    ],
     iconName: 'Database',
     languages: ['English', 'Hindi', 'Regional Support'],
     deliverables: [
@@ -239,8 +299,14 @@ export const OUTSOURCING_SERVICES = [
     id: 'operational-assistance',
     title: 'Operational Assistance',
     tag: 'Business Continuity',
-    description: 'Hands-on operational support to manage workload spikes, project logistics, and service fulfillment.',
-    fullDescription: 'When internal capacity faces peak demand, IBS provides agile operational support teams to bridge resource gaps and keep projects delivered on schedule.',
+    description: 'Agile operational support teams in Hyderabad to manage workload spikes, project logistics, and service fulfillment.',
+    fullDescription: 'When internal capacity encounters peak demand or special project surges, IBS provides agile operational support teams to bridge resource gaps, handle project logistics, and keep deliverables on schedule with high accountability.',
+    useCases: [
+      'Peak season operational overflow handling & surge task management',
+      'Project logistics coordination, tracking & cross-team follow-up',
+      'Digital document archiving, indexing & record cataloging',
+      'Routine operational audit preparation & process documentation'
+    ],
     iconName: 'CheckCircle2',
     languages: ['English', 'Hindi', 'Regional Support'],
     deliverables: [
@@ -255,8 +321,14 @@ export const OUTSOURCING_SERVICES = [
     id: 'customized-outsourcing',
     title: 'Customized Outsourcing Solutions',
     tag: 'Bespoke Services',
-    description: 'Custom-tailored outsourcing models built around your exact operational workflows and industry needs.',
-    fullDescription: 'Every enterprise has unique operational requirements. IBS collaborates with you to design a customized operational model combining language capabilities with specialized outsourcing support.',
+    description: 'Bespoke business outsourcing solutions in India combining language capabilities with tailored back-office operations.',
+    fullDescription: 'Every enterprise has unique operational challenges. IBS collaborates with you to design a customized operational model combining multilingual language capabilities with specialized outsourcing support, dedicated management, and flexible scaling.',
+    useCases: [
+      'Hybrid language translation + back-office operational teams',
+      'Custom workflow architecture designed around proprietary software',
+      'Dedicated offshore support pods for international SME clients',
+      'Continuous process review, KPI reporting & efficiency optimization'
+    ],
     iconName: 'Settings',
     languages: ['English', 'Hindi', 'Regional Support'],
     deliverables: [

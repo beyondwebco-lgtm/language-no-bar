@@ -40,6 +40,7 @@ export default function Hero({ onOpenQuote }) {
                 type="button"
                 className="btn-yellow"
                 onClick={scrollToQuote}
+                aria-label="Get a free translation or outsourcing quote"
               >
                 <span>Get a Free Quote</span>
                 <ArrowRight size={18} />
@@ -49,6 +50,7 @@ export default function Hero({ onOpenQuote }) {
                 type="button"
                 className="btn-blue-outline"
                 onClick={scrollToServices}
+                aria-label="Explore our language and outsourcing services"
               >
                 <span>Explore Our Services</span>
               </button>
