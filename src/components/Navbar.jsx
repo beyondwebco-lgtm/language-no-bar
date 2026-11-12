@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
 import IBSLogo from './IBSLogo';
+import { WEBSITE_MENU_SERVICES } from '../data/servicesData';
 
-export default function Navbar({ onOpenQuote }) {
+export default function Navbar({ onOpenQuote, onSelectMenuService }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['home', 'about', 'founder', 'services', 'quality', 'languages', 'quote', 'blog', 'contact'];
+      const sections = ['home', 'about', 'founder', 'services', 'quality', 'languages', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
@@ -31,6 +35,27 @@ export default function Navbar({ onOpenQuote }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close desktop dropdown on outside click or Escape
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setServicesDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setServicesDropdownOpen(false);
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -47,16 +72,14 @@ export default function Navbar({ onOpenQuote }) {
     { label: 'Home', href: '#home', id: 'home' },
     { label: 'About Us', href: '#about', id: 'about' },
     { label: 'Founder', href: '#founder', id: 'founder' },
-    { label: 'Services', href: '#services', id: 'services' },
+    { label: 'Services', href: '#services', id: 'services', hasDropdown: true },
     { label: 'Quality Policy', href: '#quality', id: 'quality' },
     { label: 'Languages', href: '#languages', id: 'languages' },
     { label: 'Blog', href: '#blog', id: 'blog' },
     { label: 'Contact', href: '#contact', id: 'contact' }
   ];
 
-  const handleNavClick = (e, href) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
+  const scrollToSection = (href) => {
     const target = document.querySelector(href);
     if (target) {
       const topOffset = 85;
@@ -69,9 +92,25 @@ export default function Navbar({ onOpenQuote }) {
     }
   };
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
+    scrollToSection(href);
+  };
+
+  const handleMenuServiceClick = (menuItem) => {
+    setServicesDropdownOpen(false);
+    setMobileMenuOpen(false);
+    scrollToSection('#services');
+    if (onSelectMenuService) {
+      onSelectMenuService(menuItem);
+    }
+  };
+
   return (
     <>
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} aria-label="Main Navigation">
         <div className="container navbar-container">
           {/* Left Side: IBS Brand Logo */}
           <a href="#home" className="brand-wrapper" onClick={(e) => handleNavClick(e, '#home')} aria-label="IBS Home">
@@ -80,17 +119,76 @@ export default function Navbar({ onOpenQuote }) {
 
           {/* Right Side Desktop Navigation */}
           <ul className="nav-links">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={item.href}
-                  className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              if (item.hasDropdown) {
+                return (
+                  <li
+                    key={item.id}
+                    ref={dropdownRef}
+                    className={`nav-dropdown-wrapper ${servicesDropdownOpen ? 'open' : ''}`}
+                    onMouseEnter={() => setServicesDropdownOpen(true)}
+                    onMouseLeave={() => setServicesDropdownOpen(false)}
+                  >
+                    <button
+                      type="button"
+                      className={`nav-link nav-dropdown-trigger ${activeSection === item.id ? 'active' : ''}`}
+                      aria-expanded={servicesDropdownOpen}
+                      aria-haspopup="true"
+                      onClick={() => setServicesDropdownOpen((prev) => !prev)}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown
+                        size={14}
+                        style={{
+                          transition: 'transform 0.2s ease',
+                          transform: servicesDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)'
+                        }}
+                      />
+                    </button>
+
+                    <div className="nav-dropdown-menu" role="menu" aria-label="Services Menu">
+                      <div className="nav-dropdown-header">
+                        <span>IBS Service Offerings</span>
+                        <a
+                          href="#services"
+                          className="nav-dropdown-view-all"
+                          onClick={(e) => handleNavClick(e, '#services')}
+                        >
+                          View All Offerings →
+                        </a>
+                      </div>
+
+                      <div className="nav-dropdown-grid">
+                        {WEBSITE_MENU_SERVICES.map((srv) => (
+                          <button
+                            key={srv.menuLabel}
+                            type="button"
+                            role="menuitem"
+                            className="nav-dropdown-item"
+                            onClick={() => handleMenuServiceClick(srv)}
+                          >
+                            <span className="nav-dropdown-item-title">{srv.menuLabel}</span>
+                            <span className="nav-dropdown-item-cat">{srv.category}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={item.id}>
+                  <a
+                    href={item.href}
+                    className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Header Action Button (Desktop) */}
@@ -100,10 +198,7 @@ export default function Navbar({ onOpenQuote }) {
               className="btn-yellow nav-cta-btn"
               onClick={() => {
                 if (onOpenQuote) onOpenQuote();
-                else {
-                  const el = document.getElementById('quote');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }
+                else scrollToSection('#quote');
               }}
             >
               <span>Get a Free Quote</span>
@@ -125,14 +220,14 @@ export default function Navbar({ onOpenQuote }) {
       </nav>
 
       {/* Mobile Drawer Backdrop Overlay */}
-      <div 
+      <div
         className={`mobile-nav-overlay ${mobileMenuOpen ? 'open' : ''}`}
         onClick={() => setMobileMenuOpen(false)}
         aria-hidden="true"
       />
 
       {/* Mobile Drawer Menu */}
-      <aside 
+      <aside
         className={`mobile-nav-drawer ${mobileMenuOpen ? 'open' : ''}`}
         aria-label="Mobile Navigation"
       >
@@ -150,17 +245,67 @@ export default function Navbar({ onOpenQuote }) {
         </div>
 
         <ul className="mobile-nav-links">
-          {navItems.map((item) => (
-            <li key={item.id}>
-              <a
-                href={item.href}
-                className={`mobile-nav-link ${activeSection === item.id ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, item.href)}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {navItems.map((item) => {
+            if (item.hasDropdown) {
+              return (
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    className={`mobile-nav-link mobile-nav-accordion-btn ${activeSection === item.id ? 'active' : ''}`}
+                    onClick={() => setMobileServicesOpen((prev) => !prev)}
+                    aria-expanded={mobileServicesOpen}
+                  >
+                    <span>{item.label} ({WEBSITE_MENU_SERVICES.length})</span>
+                    <ChevronDown
+                      size={16}
+                      style={{
+                        transition: 'transform 0.2s ease',
+                        transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)'
+                      }}
+                    />
+                  </button>
+
+                  {mobileServicesOpen && (
+                    <ul className="mobile-subnav-list">
+                      <li>
+                        <a
+                          href="#services"
+                          className="mobile-subnav-link mobile-subnav-all"
+                          onClick={(e) => handleNavClick(e, '#services')}
+                        >
+                          All Services Overview →
+                        </a>
+                      </li>
+                      {WEBSITE_MENU_SERVICES.map((srv) => (
+                        <li key={srv.menuLabel}>
+                          <button
+                            type="button"
+                            className="mobile-subnav-link"
+                            onClick={() => handleMenuServiceClick(srv)}
+                          >
+                            <span>{srv.menuLabel}</span>
+                            <span className="mobile-subnav-cat">{srv.category}</span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            }
+
+            return (
+              <li key={item.id}>
+                <a
+                  href={item.href}
+                  className={`mobile-nav-link ${activeSection === item.id ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="mobile-nav-footer">
@@ -171,10 +316,7 @@ export default function Navbar({ onOpenQuote }) {
             onClick={() => {
               setMobileMenuOpen(false);
               if (onOpenQuote) onOpenQuote();
-              else {
-                const el = document.getElementById('quote');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }
+              else scrollToSection('#quote');
             }}
           >
             <span>Get a Free Quote</span>

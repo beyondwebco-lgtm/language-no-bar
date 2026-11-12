@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import BackToTop from './components/BackToTop';
 import { ServiceModal, LanguagesModal, BlogModal } from './components/Modals';
+import { ALL_SERVICES } from './data/servicesData';
 
 export default function App() {
   const [selectedService, setSelectedService] = useState(null);
@@ -56,6 +57,13 @@ export default function App() {
     setSelectedService(service);
   };
 
+  const handleSelectMenuService = (menuItem) => {
+    const matched = ALL_SERVICES.find((s) => s.id === menuItem.serviceId);
+    if (matched) {
+      setSelectedService(matched);
+    }
+  };
+
   const handleSelectLanguagePair = (pair) => {
     handleOpenQuote('Document Translation', pair.source, pair.target);
   };
@@ -70,7 +78,10 @@ export default function App() {
       <TopContactBar />
 
       {/* 2. Navigation Bar with IBS Brand Logo */}
-      <Navbar onOpenQuote={() => handleOpenQuote()} />
+      <Navbar
+        onOpenQuote={() => handleOpenQuote()}
+        onSelectMenuService={handleSelectMenuService}
+      />
 
       <main id="main-content">
         {/* 3. Hero Section: Bridging Languages. Empowering Businesses. */}

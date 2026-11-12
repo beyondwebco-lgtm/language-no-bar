@@ -27,7 +27,7 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedQuote, setSubmittedQuote] = useState(null);
 
-  // Grouped service options: Translation Services vs Business Outsourcing
+  // Grouped service options: Translation Services, Specialized Language & AI, Business Outsourcing
   const serviceOptions = [
     {
       group: 'Language Translation Services',
@@ -36,9 +36,23 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
         'Document Translation',
         'Business & Corporate Translation',
         'Language Localization',
+        'Interpretation',
         'Audio & Video Transcription',
         'Multilingual Communication',
         'Survey Translation'
+      ]
+    },
+    {
+      group: 'Specialized Language, Media, AI & Research',
+      items: [
+        'Subtitling & Dubbing',
+        'Multilingual DTP',
+        'Linguistic QA',
+        'Back Translation',
+        'Content & Copywriting',
+        'AI Language Solutions',
+        'Language Data',
+        'Market Research'
       ]
     },
     {
@@ -55,11 +69,23 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
     }
   ];
 
-  // Helper: Determine if selected service is translation-related
+  // Helper: Determine if selected service is translation/language-related
   const isTranslationSelected = () => {
     if (!formData.serviceRequired) return false;
     const s = formData.serviceRequired.toLowerCase();
-    return s.includes('translation') || s.includes('localization') || s.includes('transcription') || s.includes('multilingual');
+    return (
+      s.includes('translation') ||
+      s.includes('localization') ||
+      s.includes('interpretation') ||
+      s.includes('transcription') ||
+      s.includes('subtitling') ||
+      s.includes('dtp') ||
+      s.includes('linguistic') ||
+      s.includes('copywriting') ||
+      s.includes('language') ||
+      s.includes('multilingual') ||
+      s.includes('research')
+    );
   };
 
   const popularLanguages = [

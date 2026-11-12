@@ -341,5 +341,293 @@ export const OUTSOURCING_SERVICES = [
   }
 ];
 
+// Specialized Language, Media, AI & Research Services (Completing the 13 Website Menu Offerings)
+export const SPECIALIZED_LANGUAGE_SERVICES = [
+  {
+    id: 'interpretation',
+    title: 'Interpretation',
+    tag: 'Live Language Support',
+    description: 'Professional consecutive, simultaneous, and remote interpretation services for corporate meetings, conferences, and consultations.',
+    fullDescription: 'IBS provides structured interpretation solutions tailored for business negotiations, executive briefings, legal consultations, and multilingual events. Based in Hyderabad, we help organizations communicate seamlessly across languages in real time.',
+    useCases: [
+      'Board meetings, client negotiations & corporate briefings',
+      'Remote video & over-the-phone interpretation (VRI / OPI)',
+      'Seminars, workshops, training sessions & trade delegations',
+      'Medical, legal & technical consultation assistance'
+    ],
+    iconName: 'Headphones',
+    languages: ['Hindi', 'English', 'Telugu', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese'],
+    deliverables: [
+      'Consecutive & simultaneous interpretation support',
+      'Remote video & telephonic interpreting coordination',
+      'Pre-session terminology & briefing preparation',
+      'Confidentiality-bound live communication support'
+    ],
+    qualityStandard: 'Real-Time Clarity & Cultural Neutrality'
+  },
+  {
+    id: 'subtitling-dubbing',
+    title: 'Subtitling & Dubbing',
+    tag: 'Multimedia Localization',
+    description: 'Synchronized multilingual subtitling, closed captioning, voiceover, and dubbing for corporate videos and e-learning.',
+    fullDescription: 'Expand the reach of your video content with accurate subtitling, time-coded captions, and natural voiceover/dubbing. IBS adapts corporate training modules, marketing videos, and informational media for regional and international audiences.',
+    useCases: [
+      'Corporate training videos & employee onboarding modules',
+      'Product demos, explainer videos & promotional campaigns',
+      'Multilingual YouTube, webinar & documentary subtitling',
+      'Accessible closed captions (SDH) in SRT, VTT & ASS formats'
+    ],
+    iconName: 'Film',
+    languages: ['Hindi', 'English', 'Telugu', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese'],
+    deliverables: [
+      'Time-synced multilingual subtitle files (SRT, VTT)',
+      'Burned-in / open caption video rendering support',
+      'Script adaptation for voiceover & dubbing sync',
+      'Reading-speed & frame-accurate QA checks'
+    ],
+    qualityStandard: 'Frame-Accurate Sync & Natural Pacing'
+  },
+  {
+    id: 'multilingual-dtp',
+    title: 'Multilingual DTP',
+    tag: 'Desktop Publishing',
+    description: 'Layout adaptation, typesetting, and print-ready formatting across left-to-right and right-to-left scripts.',
+    fullDescription: 'Translated content often expands or contracts and requires careful visual formatting. IBS delivers multilingual desktop publishing (DTP) to ensure brochures, manuals, catalogs, and presentations retain publication-grade design across every script.',
+    useCases: [
+      'Product catalogs, corporate brochures & marketing flyers',
+      'Technical user manuals, safety guides & instructional booklets',
+      'Right-to-left (RTL) Arabic layout mirroring & typography',
+      'Multi-language corporate slide decks & annual reports'
+    ],
+    iconName: 'Layout',
+    languages: ['Hindi', 'English', 'Arabic', 'Japanese', 'Chinese', 'French', 'German', 'Spanish', 'Marathi', 'Gujarati'],
+    deliverables: [
+      'Print-ready PDFs & editable source layout files',
+      'Font localization & script-specific typography',
+      'RTL (Arabic) formatting & graphic text localization',
+      'Visual layout & pagination verification'
+    ],
+    qualityStandard: 'Publication-Grade Visual & Script Fidelity'
+  },
+  {
+    id: 'linguistic-qa',
+    title: 'Linguistic QA',
+    tag: 'Quality Assurance',
+    description: 'Independent bilingual review, proofreading, terminology verification, and UI/UX linguistic testing.',
+    fullDescription: 'Before publishing critical documents, software interfaces, or marketing campaigns, IBS performs dedicated Linguistic Quality Assurance (LQA) to catch contextual errors, terminology drift, truncation, and formatting inconsistencies.',
+    useCases: [
+      'In-context software, web & mobile app UI linguistic testing',
+      'Third-party translation audit & bilingual proofreading',
+      'Glossary & brand style-guide compliance verification',
+      'Pre-print sign-off for regulated & corporate materials'
+    ],
+    iconName: 'ShieldCheck',
+    languages: ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese', 'Marathi', 'Gujarati'],
+    deliverables: [
+      'Annotated linguistic QA reports & error logs',
+      'Terminology consistency & glossary alignment',
+      'In-context UI/UX screenshot & layout review',
+      'Final proofread & publication-ready sign-off'
+    ],
+    qualityStandard: 'Zero-Defect Bilingual & Contextual Verification'
+  },
+  {
+    id: 'back-translation',
+    title: 'Back Translation',
+    tag: 'Verification & Compliance',
+    description: 'Independent re-translation back into the source language to verify conceptual equivalence for sensitive content.',
+    fullDescription: 'For clinical, legal, regulatory, and market research questionnaires where exact meaning is critical, IBS provides independent blind back translation followed by side-by-side reconciliation to confirm zero semantic drift.',
+    useCases: [
+      'Clinical trial consent forms & healthcare patient questionnaires',
+      'Market research surveys & psychometric assessment tools',
+      'High-stakes legal clauses & compliance disclosures',
+      'Cross-cultural validation & reconciliation reporting'
+    ],
+    iconName: 'Repeat',
+    languages: ['Hindi', 'English', 'Telugu', 'Marathi', 'Gujarati', 'French', 'Spanish', 'German', 'Arabic'],
+    deliverables: [
+      'Blind independent back-translated documents',
+      'Source vs. back-translation reconciliation matrix',
+      'Discrepancy analysis & resolution notes',
+      'Final validated target-language deliverables'
+    ],
+    qualityStandard: 'Independent Blind Verification & Semantic Integrity'
+  },
+  {
+    id: 'content-copywriting',
+    title: 'Content & Copywriting',
+    tag: 'Creative & Corporate',
+    description: 'Original corporate copywriting, multilingual content creation, and brand transcreation tailored to target audiences.',
+    fullDescription: 'Beyond translating existing files, IBS supports businesses with clear corporate writing, website copy, product descriptions, and culturally adapted transcreation designed to engage audiences in India and international markets.',
+    useCases: [
+      'Corporate website pages, service brochures & company profiles',
+      'SEO-friendly business articles, blogs & thought-leadership pieces',
+      'Marketing taglines & campaign transcreation across regions',
+      'Product descriptions, newsletters & internal communications'
+    ],
+    iconName: 'PenTool',
+    languages: ['English', 'Hindi', 'Telugu', 'Regional & Global Support'],
+    deliverables: [
+      'Brand-aligned corporate & web copy',
+      'Transcreated marketing & campaign messaging',
+      'Structured editorial review & proofreading',
+      'Audience-tailored tone and terminology'
+    ],
+    qualityStandard: 'Brand Voice Consistency & Editorial Precision'
+  },
+  {
+    id: 'ai-language-solutions',
+    title: 'AI Language Solutions',
+    tag: 'Human-in-the-Loop AI',
+    description: 'AI-assisted translation workflows paired with expert human post-editing (MTPE) for scalable enterprise efficiency.',
+    fullDescription: 'Combine modern language technology with human linguistic oversight. IBS offers structured Machine Translation Post-Editing (MTPE), AI output evaluation, and hybrid workflows that balance speed, cost-efficiency, and contextual accuracy.',
+    useCases: [
+      'Light and full Machine Translation Post-Editing (MTPE)',
+      'High-volume e-commerce catalog & knowledge-base localization',
+      'AI-generated content review, fact-checking & tone polishing',
+      'Custom prompt & terminology guideline alignment'
+    ],
+    iconName: 'Cpu',
+    languages: ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese'],
+    deliverables: [
+      'Human-reviewed post-edited target content',
+      'AI translation quality evaluation & scoring',
+      'Terminology & style consistency enforcement',
+      'Scalable turnaround for high-volume workflows'
+    ],
+    qualityStandard: 'Human-in-the-Loop Accuracy & Scalable Delivery'
+  },
+  {
+    id: 'language-data',
+    title: 'Language Data',
+    tag: 'AI & NLP Datasets',
+    description: 'Multilingual text, speech, and annotation datasets supporting NLP, voice AI, and machine learning initiatives.',
+    fullDescription: 'High-performing language models and speech systems rely on clean, well-structured data. IBS provides multilingual data collection, transcription, labeling, and linguistic annotation services with strict confidentiality and quality controls.',
+    useCases: [
+      'Multilingual text & speech corpus collection',
+      'Named Entity Recognition (NER), sentiment & intent tagging',
+      'ASR (Automatic Speech Recognition) audio transcription & validation',
+      'Evaluation datasets for regional Indian & global languages'
+    ],
+    iconName: 'Database',
+    languages: ['English', 'Hindi', 'Telugu', 'Marathi', 'Gujarati', 'Tamil', 'Kannada', 'Global Languages'],
+    deliverables: [
+      'Structured JSON, CSV, or XML annotated datasets',
+      'Speaker-verified audio & phonetic transcripts',
+      'Inter-annotator agreement & quality audits',
+      'Secure data handling & NDA compliance'
+    ],
+    qualityStandard: 'Structured Annotation Hygiene & Data Privacy'
+  },
+  {
+    id: 'market-research',
+    title: 'Market Research',
+    tag: 'Research & Insights',
+    description: 'End-to-end multilingual market research support, survey localization, open-end coding, and insights compilation.',
+    fullDescription: 'IBS supports research agencies and corporate strategy teams with multilingual survey translation, respondent transcript coding, and secondary research data processing across diverse Indian and international demographics.',
+    useCases: [
+      'Multilingual questionnaire localization & scale validation',
+      'Verbatim open-ended survey response translation & coding',
+      'Focus group & in-depth interview (IDI) transcription',
+      'Secondary market data compilation & structured reporting'
+    ],
+    iconName: 'BarChart3',
+    languages: ['English', 'Hindi', 'Telugu', 'Marathi', 'Gujarati', 'French', 'German', 'Spanish'],
+    deliverables: [
+      'Localized survey instruments & screeners',
+      'Translated & categorized verbatim response sheets',
+      'Cleaned research datasets ready for analysis',
+      'Confidentiality-assured research handling'
+    ],
+    qualityStandard: 'Unbiased Phrasing & Metric Integrity'
+  }
+];
+
 // Combined list for general explorer / modals
-export const ALL_SERVICES = [...TRANSLATION_SERVICES, ...OUTSOURCING_SERVICES];
+export const ALL_SERVICES = [
+  ...TRANSLATION_SERVICES,
+  ...SPECIALIZED_LANGUAGE_SERVICES,
+  ...OUTSOURCING_SERVICES
+];
+
+// Exact 13-item Suggested Website Menu for Navbar & Navigation
+export const WEBSITE_MENU_SERVICES = [
+  {
+    menuLabel: 'Translation',
+    category: 'Language Core',
+    serviceId: 'doc-translation',
+    quoteValue: 'Document Translation'
+  },
+  {
+    menuLabel: 'Localization',
+    category: 'Language Core',
+    serviceId: 'localization',
+    quoteValue: 'Language Localization'
+  },
+  {
+    menuLabel: 'Interpretation',
+    category: 'Language Core',
+    serviceId: 'interpretation',
+    quoteValue: 'Interpretation'
+  },
+  {
+    menuLabel: 'Transcription',
+    category: 'Media & Audio',
+    serviceId: 'transcription',
+    quoteValue: 'Audio & Video Transcription'
+  },
+  {
+    menuLabel: 'Subtitling & Dubbing',
+    category: 'Media & Audio',
+    serviceId: 'subtitling-dubbing',
+    quoteValue: 'Subtitling & Dubbing'
+  },
+  {
+    menuLabel: 'Multilingual DTP',
+    category: 'Design & QA',
+    serviceId: 'multilingual-dtp',
+    quoteValue: 'Multilingual DTP'
+  },
+  {
+    menuLabel: 'Linguistic QA',
+    category: 'Design & QA',
+    serviceId: 'linguistic-qa',
+    quoteValue: 'Linguistic QA'
+  },
+  {
+    menuLabel: 'Back Translation',
+    category: 'Design & QA',
+    serviceId: 'back-translation',
+    quoteValue: 'Back Translation'
+  },
+  {
+    menuLabel: 'Content & Copywriting',
+    category: 'Content & Insights',
+    serviceId: 'content-copywriting',
+    quoteValue: 'Content & Copywriting'
+  },
+  {
+    menuLabel: 'AI Language Solutions',
+    category: 'AI & Data',
+    serviceId: 'ai-language-solutions',
+    quoteValue: 'AI Language Solutions'
+  },
+  {
+    menuLabel: 'Language Data',
+    category: 'AI & Data',
+    serviceId: 'language-data',
+    quoteValue: 'Language Data'
+  },
+  {
+    menuLabel: 'Market Research',
+    category: 'Content & Insights',
+    serviceId: 'market-research',
+    quoteValue: 'Market Research'
+  },
+  {
+    menuLabel: 'BPO & Outsourcing',
+    category: 'Outsourcing',
+    serviceId: 'bpo-support',
+    quoteValue: 'Business Process Outsourcing (BPO)'
+  }
+];

@@ -14,9 +14,17 @@ import {
   Settings, 
   ArrowRight, 
   Languages,
-  Check
+  Check,
+  Headphones,
+  Film,
+  Layout,
+  ShieldCheck,
+  Repeat,
+  PenTool,
+  Cpu,
+  BarChart3
 } from 'lucide-react';
-import { TRANSLATION_SERVICES, OUTSOURCING_SERVICES } from '../data/servicesData';
+import { TRANSLATION_SERVICES, SPECIALIZED_LANGUAGE_SERVICES, OUTSOURCING_SERVICES } from '../data/servicesData';
 
 const iconMap = {
   FileText,
@@ -30,18 +38,28 @@ const iconMap = {
   FileCheck,
   Database,
   CheckCircle2,
-  Settings
+  Settings,
+  Headphones,
+  Film,
+  Layout,
+  ShieldCheck,
+  Repeat,
+  PenTool,
+  Cpu,
+  BarChart3
 };
 
 export default function MainServices({ onExploreService }) {
-  const [activeCategory, setActiveCategory] = useState('all'); // 'all' | 'translation' | 'outsourcing'
+  const [activeCategory, setActiveCategory] = useState('all'); // 'all' | 'translation' | 'specialized' | 'outsourcing'
 
   const displayedServices = 
     activeCategory === 'translation' 
       ? TRANSLATION_SERVICES 
-      : activeCategory === 'outsourcing' 
-        ? OUTSOURCING_SERVICES 
-        : [...TRANSLATION_SERVICES, ...OUTSOURCING_SERVICES];
+      : activeCategory === 'specialized'
+        ? SPECIALIZED_LANGUAGE_SERVICES
+        : activeCategory === 'outsourcing' 
+          ? OUTSOURCING_SERVICES 
+          : [...TRANSLATION_SERVICES, ...SPECIALIZED_LANGUAGE_SERVICES, ...OUTSOURCING_SERVICES];
 
   return (
     <section id="services" className="main-services-section">
@@ -55,7 +73,7 @@ export default function MainServices({ onExploreService }) {
             Delivering professional language translation services and business process outsourcing (BPO) solutions in Hyderabad, Telangana to help organizations communicate effectively and optimize operations across India.
           </p>
 
-          {/* Category Tabs: Language Translation vs. Business Outsourcing */}
+          {/* Category Tabs: Language Translation, Specialized Language & AI, vs. Business Outsourcing */}
           <div className="services-category-tabs" role="tablist">
             <button
               type="button"
@@ -64,7 +82,7 @@ export default function MainServices({ onExploreService }) {
               role="tab"
               aria-selected={activeCategory === 'all'}
             >
-              <span>All Offerings ({TRANSLATION_SERVICES.length + OUTSOURCING_SERVICES.length})</span>
+              <span>All Offerings ({TRANSLATION_SERVICES.length + SPECIALIZED_LANGUAGE_SERVICES.length + OUTSOURCING_SERVICES.length})</span>
             </button>
             <button
               type="button"
@@ -74,7 +92,17 @@ export default function MainServices({ onExploreService }) {
               aria-selected={activeCategory === 'translation'}
             >
               <Languages size={17} />
-              <span>Language Translation Services ({TRANSLATION_SERVICES.length})</span>
+              <span>Language Translation ({TRANSLATION_SERVICES.length})</span>
+            </button>
+            <button
+              type="button"
+              className={`services-tab-btn ${activeCategory === 'specialized' ? 'active' : ''}`}
+              onClick={() => setActiveCategory('specialized')}
+              role="tab"
+              aria-selected={activeCategory === 'specialized'}
+            >
+              <Cpu size={17} />
+              <span>Specialized, Media &amp; AI ({SPECIALIZED_LANGUAGE_SERVICES.length})</span>
             </button>
             <button
               type="button"
@@ -84,7 +112,7 @@ export default function MainServices({ onExploreService }) {
               aria-selected={activeCategory === 'outsourcing'}
             >
               <Workflow size={17} />
-              <span>Business Outsourcing Solutions ({OUTSOURCING_SERVICES.length})</span>
+              <span>Business Outsourcing ({OUTSOURCING_SERVICES.length})</span>
             </button>
           </div>
         </div>
@@ -93,15 +121,15 @@ export default function MainServices({ onExploreService }) {
         <div className="services-cards-grid">
           {displayedServices.map((service) => {
             const IconComp = iconMap[service.iconName] || Globe;
-            const isTranslation = TRANSLATION_SERVICES.some((s) => s.id === service.id);
+            const isOutsourcing = OUTSOURCING_SERVICES.some((s) => s.id === service.id);
 
             return (
               <div key={service.id} className="service-card">
                 <div className="service-card-top">
-                  <div className="service-card-icon" style={{ backgroundColor: isTranslation ? '#0B2545' : '#0D9488' }}>
+                  <div className="service-card-icon" style={{ backgroundColor: !isOutsourcing ? '#0B2545' : '#0D9488' }}>
                     <IconComp size={24} style={{ color: '#ffffff' }} />
                   </div>
-                  <span className="service-card-badge" style={{ borderColor: isTranslation ? 'rgba(11, 37, 69, 0.2)' : 'rgba(13, 148, 136, 0.3)' }}>
+                  <span className="service-card-badge" style={{ borderColor: !isOutsourcing ? 'rgba(11, 37, 69, 0.2)' : 'rgba(13, 148, 136, 0.3)' }}>
                     {service.tag}
                   </span>
                 </div>
