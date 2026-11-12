@@ -65,7 +65,7 @@ export default function ContactSection() {
                   <h4>Corporate Office</h4>
                   <p><strong>IBS – Innovative Business Solutions</strong></p>
                   <p>63 B, Sriram Nagar, Kondapur, Hyderabad – 500084, Telangana, India.</p>
-                  <span className="note">Established February 2021 | 5+ Years in Business</span>
+                  <span className="note">Established February 2021 • 5+ Years Delivering Business Solutions</span>
                 </div>
               </div>
 
@@ -77,7 +77,7 @@ export default function ContactSection() {
                 <div className="contact-details">
                   <h4>Telephone Inquiries</h4>
                   <p style={{ color: '#0B2545', fontWeight: 600 }}>+91 (Contact Pending Confirmation)</p>
-                  <span className="note">Mon - Sat: 9:00 AM to 7:00 PM IST (Please use form below)</span>
+                  <span className="note">Monday – Saturday | 24/7 Support</span>
                 </div>
               </div>
 
@@ -133,12 +133,12 @@ export default function ContactSection() {
 
             {submitted ? (
               <div className="contact-success-box" style={{ textAlign: 'center', padding: '30px 20px' }}>
-                <div style={{ display: 'inline-flex', padding: 12, borderRadius: '50%', background: '#f0fdfa', color: '#0D9488', marginBottom: 12 }}>
+                <div style={{ display: 'inline-flex', padding: 12, borderRadius: '50%', background: '#fef3c7', color: '#b45309', marginBottom: 12 }}>
                   <CheckCircle2 size={36} />
                 </div>
-                <h4 style={{ fontSize: '1.2rem', color: '#0B2545', fontWeight: 700 }}>Thank You for Reaching Out!</h4>
+                <h4 style={{ fontSize: '1.2rem', color: '#0B2545', fontWeight: 700 }}>Message Preview Prepared (Demo Mode)</h4>
                 <p style={{ fontSize: '0.9rem', color: '#475569', marginTop: 8 }}>
-                  Your message has been successfully submitted. The IBS team will contact you shortly.
+                  Your message details were validated locally. Backend email delivery is not yet configured on this site, so this message has not been transmitted to IBS.
                 </p>
                 <button
                   type="button"
@@ -149,7 +149,7 @@ export default function ContactSection() {
                     setInquiryData({ name: '', email: '', subject: '', message: '' });
                   }}
                 >
-                  Send Another Message
+                  Prepare Another Message
                 </button>
               </div>
             ) : (

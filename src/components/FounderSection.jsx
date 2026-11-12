@@ -11,7 +11,7 @@ export default function FounderSection() {
             Meet Our <span>Founder</span>
           </h2>
           <p className="section-subtitle">
-            Led by Abburi Tanuja, bringing 15+ years of professional experience in the language services and business solutions industry.
+            Over 15 Years of Industry Expertise. A Vision for Global Communication.
           </p>
         </div>
 
@@ -33,12 +33,12 @@ export default function FounderSection() {
 
             <div className="founder-identity">
               <h3 className="founder-name">Abburi Tanuja</h3>
-              <p className="founder-role">Founder – Innovative Business Solutions</p>
-              
+              <p className="founder-role">Founder, Innovative Business Solutions</p>
+
               <div className="founder-badges-stack">
                 <div className="founder-badge-pill" style={{ backgroundColor: 'rgba(13, 148, 136, 0.12)', color: '#0F766E', borderColor: 'rgba(13, 148, 136, 0.3)', fontWeight: 700 }}>
                   <Briefcase size={14} />
-                  <span>15+ Years Professional Experience</span>
+                  <span>15+ Years Industry Expertise</span>
                 </div>
                 <div className="founder-badge-pill">
                   <Calendar size={14} />
@@ -52,7 +52,7 @@ export default function FounderSection() {
             </div>
           </div>
 
-          {/* Right Column: Vision, Background & Biography */}
+          {/* Right Column: Vision, Leadership & Biography */}
           <div className="founder-content-col">
             {/* Vision & Leadership Statement */}
             <div className="founder-vision-box">
@@ -60,7 +60,7 @@ export default function FounderSection() {
                 <Quote size={28} />
               </div>
               <div className="founder-quote-body">
-                <h4 className="founder-block-title">Vision & Leadership Statement</h4>
+                <h4 className="founder-block-title">Vision &amp; Leadership Statement</h4>
                 <p className="founder-quote-text">
                   "At IBS, our purpose is to bridge communication gaps and deliver dependable operational support for growing enterprises. By pairing linguistic precision with disciplined business outsourcing, we help organizations work efficiently, connect meaningfully with their audiences, and achieve sustainable growth."
                 </p>
@@ -70,25 +70,25 @@ export default function FounderSection() {
               </div>
             </div>
 
-            {/* Professional Experience & Background */}
+            {/* Biography */}
             <div className="founder-detail-block">
               <h4 className="founder-block-title">
                 <Sparkles size={18} style={{ color: '#0D9488' }} />
-                <span>Professional Experience & Background</span>
+                <span>Biography &amp; Industry Leadership</span>
               </h4>
               <p className="founder-detail-text">
-                With <strong>15+ years of professional experience</strong> in the language services and business solutions industry, Abburi Tanuja established Innovative Business Solutions (IBS) in February 2021. Combining her 15+ years of industry expertise with IBS's 5+ years in business, she leads the Hyderabad-based team in delivering dependable language translation and business outsourcing solutions.
+                With over 15 years of professional experience in the field, Abburi Tanuja brings valuable industry knowledge, leadership and a deep understanding of evolving business communication needs. Her vision guides Innovative Business Solutions in delivering reliable, quality-focused language and outsourcing solutions for organizations operating across markets.
               </p>
             </div>
 
-            {/* Biography Placeholder */}
+            {/* Company History Distinction */}
             <div className="founder-detail-block biography-placeholder-box">
               <h4 className="founder-block-title">
                 <ShieldCheck size={18} style={{ color: '#0B2545' }} />
-                <span>Biography & Professional Profile</span>
+                <span>15+ Years of Expertise. 5+ Years of Business Excellence.</span>
               </h4>
               <p className="founder-detail-text text-muted">
-                Abburi Tanuja brings 15+ years of professional expertise in language translation and operational business solutions to her role as Founder of IBS. Detailed career milestones and academic background will be featured here upon official confirmation by the founder.
+                Led by Abburi Tanuja, a seasoned professional bringing over 15 years of industry expertise in language services and business solutions, IBS was established in February 2021 and has built over five years of experience delivering business solutions.
               </p>
             </div>
           </div>
@@ -97,4 +97,3 @@ export default function FounderSection() {
     </section>
   );
 }
-

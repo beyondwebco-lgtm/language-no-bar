@@ -6,6 +6,9 @@ import {
   Workflow, 
   Layers, 
   Database,
+  Headphones,
+  Mic,
+  Film,
   ArrowUpRight 
 } from 'lucide-react';
 import { CATEGORY_SERVICES } from '../data/servicesData';
@@ -16,7 +19,10 @@ const iconMap = {
   Globe: Globe,
   Workflow: Workflow,
   Layers: Layers,
-  Database: Database
+  Database: Database,
+  Headphones: Headphones,
+  Mic: Mic,
+  Film: Film
 };
 
 export default function CategoryBanners({ onSelectCategory }) {

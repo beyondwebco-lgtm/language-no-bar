@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import CategoryBanners from './components/CategoryBanners';
 import MainServices from './components/MainServices';
+import WhyChooseIBS from './components/WhyChooseIBS';
+import IndustriesSection from './components/IndustriesSection';
 import AboutUs from './components/AboutUs';
 import FounderSection from './components/FounderSection';
 import QualityPolicy from './components/QualityPolicy';
@@ -14,11 +16,12 @@ import BlogSection from './components/BlogSection';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import BackToTop from './components/BackToTop';
-import { ServiceModal, LanguagesModal, BlogModal } from './components/Modals';
+import { ServiceModal, IndustryModal, LanguagesModal, BlogModal } from './components/Modals';
 import { ALL_SERVICES } from './data/servicesData';
 
 export default function App() {
   const [selectedService, setSelectedService] = useState(null);
+  const [selectedIndustry, setSelectedIndustry] = useState(null);
   const [selectedBlogPost, setSelectedBlogPost] = useState(null);
   const [languagesModalOpen, setLanguagesModalOpen] = useState(false);
 
@@ -26,14 +29,21 @@ export default function App() {
   const [quotePrefill, setQuotePrefill] = useState({
     service: '',
     source: 'English',
-    target: ''
+    target: '',
+    industry: ''
   });
 
-  const handleOpenQuote = (serviceName = '', sourceLang = 'English', targetLang = '') => {
+  const handleOpenQuote = (
+    serviceName = '',
+    sourceLang = 'English',
+    targetLang = '',
+    industryName = ''
+  ) => {
     setQuotePrefill({
       service: serviceName,
       source: sourceLang,
-      target: targetLang
+      target: targetLang,
+      industry: industryName
     });
     const el = document.getElementById('quote');
     if (el) {
@@ -42,14 +52,16 @@ export default function App() {
   };
 
   const handleCategorySelect = (category) => {
+    const matched = ALL_SERVICES.find((s) => s.id === category.id);
+    if (matched) {
+      setSelectedService(matched);
+      return;
+    }
     setSelectedService({
       title: category.title,
       description: category.description,
-      deliverables: category.features,
-      tag: category.category === 'translation' ? 'Language Translation' : 'Business Outsourcing',
-      languages: category.category === 'translation' 
-        ? ['Hindi', 'English', 'French', 'Spanish', 'German', 'Arabic', 'Japanese', 'Chinese', 'Marathi', 'Gujarati']
-        : ['English', 'Hindi', 'Regional Languages']
+      subservices: category.features,
+      tag: category.category === 'outsourcing' ? 'Multilingual BPO' : 'Language Solutions'
     });
   };
 
@@ -64,12 +76,12 @@ export default function App() {
     }
   };
 
-  const handleSelectLanguagePair = (pair) => {
-    handleOpenQuote('Document Translation', pair.source, pair.target);
-  };
-
-  const handleSelectLanguageFromCatalog = (langName) => {
-    handleOpenQuote('Language Translation Services (General)', 'English', langName);
+  const handleSelectLanguageFromExplorer = (langName) => {
+    if (langName === 'English') {
+      handleOpenQuote('Translation Services', 'English', 'Spanish');
+    } else {
+      handleOpenQuote('Translation Services', 'English', langName);
+    }
   };
 
   return (
@@ -77,79 +89,85 @@ export default function App() {
       {/* 1. Top Slim Contact Bar */}
       <TopContactBar />
 
-      {/* 2. Navigation Bar with IBS Brand Logo */}
+      {/* 2. Navigation Bar with IBS Brand Logo & 14-Item Services Menu */}
       <Navbar
         onOpenQuote={() => handleOpenQuote()}
         onSelectMenuService={handleSelectMenuService}
       />
 
       <main id="main-content">
-        {/* 3. Hero Section: Bridging Languages. Empowering Businesses. */}
-        <Hero onOpenQuote={() => handleOpenQuote()} />
+        {/* 3. Hero Section with Animated Language-Pair Showcase */}
+        <Hero onOpenQuote={(srv, src, tgt) => handleOpenQuote(srv || 'Translation Services', src || 'English', tgt || '')} />
 
         {/* 4. Quick Highlights: 6 Horizontal Category Highlights */}
         <CategoryBanners onSelectCategory={handleCategorySelect} />
 
-        {/* 5. Services: Language Translation Services & Business Outsourcing Solutions */}
+        {/* 5. 14 Major Language & Outsourcing Service Categories */}
         <MainServices onExploreService={handleExploreService} />
 
-        {/* 6. About Us: About Innovative Business Solutions */}
+        {/* 6. Why Choose Innovative Business Solutions */}
+        <WhyChooseIBS />
+
+        {/* 7. Industries We Serve (12 Industry Sectors) */}
+        <IndustriesSection onSelectIndustry={(ind) => setSelectedIndustry(ind)} />
+
+        {/* 8. Global Language Coverage Explorer */}
+        <LanguagesSection onSelectLanguage={handleSelectLanguageFromExplorer} />
+
+        {/* 9. About Us */}
         <AboutUs onOpenQuote={() => handleOpenQuote()} />
 
-        {/* 6b. Founder Section: Meet Our Founder (Abburi Tanuja) */}
+        {/* 10. Founder Section: Abburi Tanuja */}
         <FounderSection />
 
-        {/* 7. Quality Policy: Translation Accuracy, QA, Confidentiality & Delivery */}
+        {/* 11. Quality Policy */}
         <QualityPolicy />
 
-        {/* 8. Languages Section: Connecting Businesses Across Languages */}
-        <LanguagesSection 
-          onOpenAllLanguages={() => setLanguagesModalOpen(true)}
-          onSelectPair={handleSelectLanguagePair}
-        />
-
-        {/* 9. Get a Quote Form Section */}
-        <GetAQuote 
-          key={`${quotePrefill.service}-${quotePrefill.source}-${quotePrefill.target}`}
+        {/* 12. Get a Quote Form Section */}
+        <GetAQuote
+          key={`${quotePrefill.service}-${quotePrefill.source}-${quotePrefill.target}-${quotePrefill.industry}`}
           prefillService={quotePrefill.service}
           prefillSourceLang={quotePrefill.source}
           prefillTargetLang={quotePrefill.target}
+          prefillIndustry={quotePrefill.industry}
         />
 
-        {/* 10. Contact Us Section: Hyderabad Address, Form, and Maps */}
+        {/* 13. Contact Us Section */}
         <ContactSection />
 
-        {/* 11. Blog & Insights Section */}
+        {/* 14. Blog & Insights Section */}
         <BlogSection onSelectPost={(post) => setSelectedBlogPost(post)} />
       </main>
 
-      {/* 12. Corporate Navy Footer */}
-      <Footer 
-        onOpenQuote={() => handleOpenQuote()}
-        onSelectServiceById={(id) => handleOpenQuote(id)}
-      />
+      {/* 15. Corporate Navy Footer */}
+      <Footer />
 
-      {/* Interactive Utilities */}
+      {/* Floating Support & Back-to-Top Controls */}
       <WhatsAppButton />
       <BackToTop />
 
       {/* Modals */}
-      <ServiceModal 
+      <ServiceModal
         service={selectedService}
         onClose={() => setSelectedService(null)}
-        onSelectQuoteService={(serviceTitle) => {
-          setSelectedService(null);
-          handleOpenQuote(serviceTitle);
-        }}
+        onSelectQuoteService={(serviceTitle) => handleOpenQuote(serviceTitle)}
       />
 
-      <LanguagesModal 
+      <IndustryModal
+        industry={selectedIndustry}
+        onClose={() => setSelectedIndustry(null)}
+        onSelectQuoteIndustry={(serviceTitle, industryName) =>
+          handleOpenQuote(serviceTitle, 'English', '', industryName)
+        }
+      />
+
+      <LanguagesModal
         isOpen={languagesModalOpen}
         onClose={() => setLanguagesModalOpen(false)}
-        onSelectLanguage={handleSelectLanguageFromCatalog}
+        onSelectLanguage={handleSelectLanguageFromExplorer}
       />
 
-      <BlogModal 
+      <BlogModal
         post={selectedBlogPost}
         onClose={() => setSelectedBlogPost(null)}
       />

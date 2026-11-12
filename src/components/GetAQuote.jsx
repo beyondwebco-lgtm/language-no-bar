@@ -1,77 +1,72 @@
 import React, { useState } from 'react';
-import { 
-  Send, 
-  UploadCloud, 
-  FileCheck, 
-  CheckCircle2, 
-  X, 
-  ShieldCheck, 
-  Clock, 
-  Building2 
+import {
+  Send,
+  UploadCloud,
+  FileCheck,
+  Info,
+  X,
+  ShieldCheck,
+  Clock,
+  Building2
 } from 'lucide-react';
+import { MAJOR_SERVICES } from '../data/servicesData';
+import { ALL_LANGUAGE_NAMES } from '../data/languagesData';
+import { INDUSTRIES_DATA } from '../data/industriesData';
 
-export default function GetAQuote({ prefillService, prefillSourceLang, prefillTargetLang, onQuoteSuccess }) {
+export default function GetAQuote({
+  prefillService,
+  prefillSourceLang,
+  prefillTargetLang,
+  prefillIndustry
+}) {
   const [formData, setFormData] = useState({
     fullName: '',
+    companyName: '',
     email: '',
     phoneNumber: '',
     serviceRequired: prefillService || '',
     sourceLanguage: prefillSourceLang || 'English',
     targetLanguage: prefillTargetLang || '',
-    projectDescription: '',
+    industry: prefillIndustry || '',
+    projectDescription: ''
   });
 
   const [uploadedFile, setUploadedFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submittedQuote, setSubmittedQuote] = useState(null);
+  const [previewSummary, setPreviewSummary] = useState(null);
 
-  // Grouped service options: Translation Services, Specialized Language & AI, Business Outsourcing
   const serviceOptions = [
     {
-      group: 'Language Translation Services',
-      items: [
-        'Language Translation Services (General)',
-        'Document Translation',
-        'Business & Corporate Translation',
-        'Language Localization',
-        'Interpretation',
-        'Audio & Video Transcription',
-        'Multilingual Communication',
-        'Survey Translation'
-      ]
+      group: 'Language & Localization Services',
+      items: MAJOR_SERVICES.filter((s) => s.group === 'language').map((s) => s.title)
     },
     {
-      group: 'Specialized Language, Media, AI & Research',
-      items: [
-        'Subtitling & Dubbing',
-        'Multilingual DTP',
-        'Linguistic QA',
-        'Back Translation',
-        'Content & Copywriting',
-        'AI Language Solutions',
-        'Language Data',
-        'Market Research'
-      ]
+      group: 'Audio, Video & DTP Services',
+      items: MAJOR_SERVICES.filter((s) => s.group === 'media').map((s) => s.title)
     },
     {
-      group: 'Business Outsourcing Solutions',
+      group: 'QA, AI, Language Data & Research',
+      items: MAJOR_SERVICES.filter((s) => s.group === 'qa-ai').map((s) => s.title)
+    },
+    {
+      group: 'Multilingual BPO & Outsourcing',
       items: [
-        'Business Outsourcing Solutions (General)',
-        'Business Process Outsourcing (BPO)',
-        'Back-Office Support',
-        'Administrative Support',
-        'Data Processing',
-        'Operational Assistance',
-        'Customized Outsourcing Solutions'
+        ...MAJOR_SERVICES.filter((s) => s.group === 'outsourcing').map((s) => s.title),
+        'Back-Office & Administrative Support',
+        'Data Processing & Operational Assistance'
       ]
     }
   ];
 
-  // Helper: Determine if selected service is translation/language-related
-  const isTranslationSelected = () => {
+  const languageOptions = [...ALL_LANGUAGE_NAMES, 'Other / Not Listed'];
+  const industryOptions = [...INDUSTRIES_DATA.map((ind) => ind.name), 'Other / General Business'];
+
+  const isLanguageServiceSelected = () => {
     if (!formData.serviceRequired) return false;
+    const matched = MAJOR_SERVICES.find((s) => s.title === formData.serviceRequired);
+    if (matched) return matched.isLanguageService;
     const s = formData.serviceRequired.toLowerCase();
     return (
       s.includes('translation') ||
@@ -79,34 +74,11 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
       s.includes('interpretation') ||
       s.includes('transcription') ||
       s.includes('subtitling') ||
-      s.includes('dtp') ||
-      s.includes('linguistic') ||
-      s.includes('copywriting') ||
+      s.includes('dubbing') ||
       s.includes('language') ||
-      s.includes('multilingual') ||
-      s.includes('research')
+      s.includes('multilingual')
     );
   };
-
-  const popularLanguages = [
-    'English',
-    'Hindi',
-    'Telugu',
-    'German',
-    'French',
-    'Spanish',
-    'Arabic',
-    'Japanese',
-    'Chinese (Simplified)',
-    'Chinese (Traditional)',
-    'Marathi',
-    'Gujarati',
-    'Tamil',
-    'Kannada',
-    'Malayalam',
-    'Bengali',
-    'Other (Specify in project notes)'
-  ];
 
   const validate = () => {
     const errs = {};
@@ -127,8 +99,7 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
       errs.serviceRequired = 'Please select a required service';
     }
 
-    // Only validate language fields when a translation service is selected
-    if (isTranslationSelected()) {
+    if (isLanguageServiceSelected()) {
       if (!formData.sourceLanguage) {
         errs.sourceLanguage = 'Please specify source language';
       }
@@ -183,33 +154,27 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
     if (validate()) {
       setIsSubmitting(true);
       setTimeout(() => {
-        setIsSubmitting(false);
-        const quoteRef = 'IBS-Q-' + Math.floor(100000 + Math.random() * 900000);
-        const details = {
+        setPreviewSummary({
           ...formData,
-          fileName: uploadedFile ? uploadedFile.name : 'No file uploaded',
-          fileSize: uploadedFile ? `${(uploadedFile.size / 1024).toFixed(1)} KB` : 'N/A',
-          referenceId: quoteRef,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        };
-        setSubmittedQuote(details);
-        if (onQuoteSuccess) {
-          onQuoteSuccess(details);
-        }
-      }, 700);
+          fileName: uploadedFile ? uploadedFile.name : null
+        });
+        setIsSubmitting(false);
+      }, 300);
     }
   };
 
-  const handleResetForm = () => {
-    setSubmittedQuote(null);
+  const handleReset = () => {
+    setPreviewSummary(null);
     setFormData({
       fullName: '',
+      companyName: '',
       email: '',
       phoneNumber: '',
       serviceRequired: '',
       sourceLanguage: 'English',
       targetLanguage: '',
-      projectDescription: '',
+      industry: '',
+      projectDescription: ''
     });
     setUploadedFile(null);
     setErrors({});
@@ -219,78 +184,91 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
     <section id="quote" className="quote-section">
       <div className="container">
         <div className="text-center">
-          <span className="section-tag">Instant Proposal</span>
+          <span className="section-tag">Project Enquiry</span>
           <h2 className="section-title">
             Request a <span>Free Quote</span>
           </h2>
           <p className="section-subtitle">
-            Submit your translation or business outsourcing requirements to receive a customized project proposal and estimated timeline from IBS.
+            Share your translation, interpretation, localization, or multilingual outsourcing requirements to outline a tailored project scope with IBS.
           </p>
         </div>
 
         <div className="quote-grid">
-          {/* Left Column: Information & Guarantees */}
+          {/* Left Column: Information & Support */}
           <div className="quote-info-card">
             <div>
               <span className="section-tag light" style={{ marginBottom: 12 }}>
-                Hyderabad, India
+                Hyderabad, India – 500084
               </span>
-              <h3 className="quote-info-title">Tailored Solutions for Your Enterprise</h3>
+              <h3 className="quote-info-title">Tailored Language &amp; Outsourcing Solutions</h3>
               <p className="quote-info-desc">
-                From specialized language translation to ongoing operational and back-office outsourcing, IBS provides structured service delivery and transparent estimates.
+                From specialized translation, interpretation, and subtitling to multilingual BPO and back-office support, IBS coordinates structured delivery aligned with your business goals.
               </p>
             </div>
 
             <div className="quote-guarantees-list">
               <div className="guarantee-item">
                 <Clock size={20} />
-                <span>Prompt Project Assessment & Response</span>
+                <span>Monday – Saturday | 24/7 Support</span>
               </div>
               <div className="guarantee-item">
                 <ShieldCheck size={20} />
-                <span>Strict Non-Disclosure & Confidentiality</span>
+                <span>Confidentiality &amp; Responsible Data Handling</span>
               </div>
               <div className="guarantee-item">
                 <Building2 size={20} />
-                <span>Hyderabad Operational Headquarters</span>
+                <span>15+ Years Industry Expertise • Est. Feb 2021</span>
               </div>
             </div>
 
             <div className="quote-helpline-box">
-              <span className="label">Need Immediate Project Guidance?</span>
+              <span className="label">Support Availability</span>
               <span className="number" style={{ fontSize: '1.05rem', color: '#14B8A6' }}>
-                Complete the quotation form for direct priority evaluation.
+                Monday – Saturday | Available 24/7
               </span>
-              <span className="sub">Mon - Sat: 9:00 AM - 7:00 PM IST</span>
+              <span className="sub">63 B, Sriram Nagar, Kondapur, Hyderabad – 500084</span>
             </div>
           </div>
 
           {/* Right Column: Dynamic Quotation Form */}
           <div className="quote-form-card">
-            {submittedQuote ? (
+            {previewSummary ? (
               <div className="quote-success-state">
-                <div className="success-icon-wrapper">
-                  <CheckCircle2 size={48} style={{ color: '#0D9488' }} />
+                <div className="success-icon-wrapper" style={{ backgroundColor: '#fef3c7' }}>
+                  <Info size={42} style={{ color: '#b45309' }} />
                 </div>
-                <h3 className="success-title">Quotation Request Received</h3>
+                <h3 className="success-title">Enquiry Preview Prepared (Demo Mode)</h3>
                 <p className="success-msg">
-                  Thank you, <strong>{submittedQuote.fullName}</strong>. Your quotation request has been recorded with reference number:
+                  Thank you, <strong>{previewSummary.fullName}</strong>. Form validation passed, however <strong>backend email/CRM delivery is not yet configured</strong> on this site, so this enquiry has <strong>not</strong> been transmitted to IBS.
                 </p>
-                <div className="quote-ref-badge">{submittedQuote.referenceId}</div>
+                <div className="quote-ref-badge" style={{ background: '#fef3c7', color: '#92400e', borderColor: '#fcd34d' }}>
+                  Preview Only — Backend Integration Pending
+                </div>
                 <div className="quote-summary-box">
-                  <div><strong>Service:</strong> {submittedQuote.serviceRequired}</div>
-                  {isTranslationSelected() && (
-                    <div><strong>Languages:</strong> {submittedQuote.sourceLanguage} → {submittedQuote.targetLanguage}</div>
+                  <div><strong>Service:</strong> {previewSummary.serviceRequired}</div>
+                  {previewSummary.companyName && (
+                    <div><strong>Company:</strong> {previewSummary.companyName}</div>
                   )}
-                  <div><strong>Email:</strong> {submittedQuote.email}</div>
-                  <div><strong>Phone:</strong> {submittedQuote.phoneNumber}</div>
-                  {submittedQuote.fileName !== 'No file uploaded' && (
-                    <div><strong>Attached Document:</strong> {submittedQuote.fileName} ({submittedQuote.fileSize})</div>
+                  {previewSummary.industry && (
+                    <div><strong>Industry:</strong> {previewSummary.industry}</div>
+                  )}
+                  {isLanguageServiceSelected() && (
+                    <div><strong>Languages:</strong> {previewSummary.sourceLanguage} → {previewSummary.targetLanguage}</div>
+                  )}
+                  <div><strong>Email:</strong> {previewSummary.email}</div>
+                  <div><strong>Phone:</strong> {previewSummary.phoneNumber}</div>
+                  {previewSummary.fileName && (
+                    <div><strong>Attachment:</strong> {previewSummary.fileName}</div>
                   )}
                 </div>
-                <button type="button" className="btn-blue-outline" onClick={handleResetForm} style={{ marginTop: 20 }}>
-                  <span>Submit Another Request</span>
-                </button>
+                <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <button type="button" className="btn-blue-outline" onClick={() => setPreviewSummary(null)}>
+                    Edit Enquiry Details
+                  </button>
+                  <button type="button" className="btn-yellow" onClick={handleReset}>
+                    Start New Enquiry
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
@@ -310,6 +288,22 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                       onChange={handleChange}
                     />
                     {errors.fullName && <span className="error-text">{errors.fullName}</span>}
+                  </div>
+
+                  {/* Company Name */}
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="companyName">
+                      Company Name
+                    </label>
+                    <input
+                      type="text"
+                      id="companyName"
+                      name="companyName"
+                      className="form-input"
+                      placeholder="e.g. Acme Global Solutions"
+                      value={formData.companyName}
+                      onChange={handleChange}
+                    />
                   </div>
 
                   {/* Business Email */}
@@ -372,8 +366,29 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                     {errors.serviceRequired && <span className="error-text">{errors.serviceRequired}</span>}
                   </div>
 
-                  {/* Conditional Language Fields: Displayed ONLY for translation services */}
-                  {isTranslationSelected() && (
+                  {/* Industry Dropdown */}
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="industry">
+                      Industry Sector
+                    </label>
+                    <select
+                      id="industry"
+                      name="industry"
+                      className="form-input"
+                      value={formData.industry}
+                      onChange={handleChange}
+                    >
+                      <option value="">-- Select Industry (Optional) --</option>
+                      {industryOptions.map((ind) => (
+                        <option key={ind} value={ind}>
+                          {ind}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Conditional Language Fields: Displayed ONLY for language-related services */}
+                  {isLanguageServiceSelected() && (
                     <>
                       <div className="form-group">
                         <label className="form-label" htmlFor="sourceLanguage">
@@ -386,7 +401,8 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                           value={formData.sourceLanguage}
                           onChange={handleChange}
                         >
-                          {popularLanguages.map((lang) => (
+                          <option value="">-- Select Source Language --</option>
+                          {languageOptions.map((lang) => (
                             <option key={lang} value={lang}>
                               {lang}
                             </option>
@@ -407,7 +423,7 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                           onChange={handleChange}
                         >
                           <option value="">-- Select Target Language --</option>
-                          {popularLanguages.map((lang) => (
+                          {languageOptions.map((lang) => (
                             <option key={lang} value={lang}>
                               {lang}
                             </option>
@@ -421,14 +437,14 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                   {/* Project Description */}
                   <div className="form-group span-full">
                     <label className="form-label" htmlFor="projectDescription">
-                      Project Description & Requirements <span className="req">*</span>
+                      Project Description &amp; Requirements <span className="req">*</span>
                     </label>
                     <textarea
                       id="projectDescription"
                       name="projectDescription"
                       rows={3}
                       className={`form-input ${errors.projectDescription ? 'error' : ''}`}
-                      placeholder="Please describe your document scope, volume, expected deadlines, or specific outsourcing workflow..."
+                      placeholder="Please describe your document scope, volume, expected timeline, or outsourcing workflow..."
                       value={formData.projectDescription}
                       onChange={handleChange}
                     />
@@ -466,6 +482,7 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                             className="btn-remove-file"
                             onClick={() => setUploadedFile(null)}
                             title="Remove file"
+                            aria-label="Remove uploaded file"
                           >
                             <X size={16} />
                           </button>
@@ -473,7 +490,7 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                       ) : (
                         <label htmlFor="quoteFileUpload" className="drop-zone-content">
                           <UploadCloud size={30} style={{ color: '#0D9488', margin: '0 auto 6px' }} />
-                          <span className="drop-title">Click to upload or drag & drop documents</span>
+                          <span className="drop-title">Click to upload or drag &amp; drop documents</span>
                           <span className="drop-sub">Supported formats: PDF, Word (DOCX), Excel, PPT, TXT, ZIP</span>
                         </label>
                       )}
@@ -492,7 +509,7 @@ export default function GetAQuote({ prefillService, prefillSourceLang, prefillTa
                     className="btn-yellow quote-submit-btn"
                     disabled={isSubmitting}
                   >
-                    <span>{isSubmitting ? 'Processing Request...' : 'Get a Free Quote'}</span>
+                    <span>{isSubmitting ? 'Preparing Preview...' : 'Get a Free Quote'}</span>
                     <Send size={16} />
                   </button>
                 </div>

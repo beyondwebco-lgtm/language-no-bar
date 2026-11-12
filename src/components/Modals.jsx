@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, ArrowRight, ShieldCheck, Search, Briefcase, Mail } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, ShieldCheck, Search, Briefcase, Mail, Layers } from 'lucide-react';
 import { ALL_SUPPORTED_LANGUAGES } from '../data/languagesData';
 
 export function ServiceModal({ service, onClose, onSelectQuoteService }) {
   if (!service) return null;
 
+  const subservicesList = service.subservices || service.deliverables || [];
+
   return (
     <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
-      <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-dialog modal-large" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="modal-close-btn" onClick={onClose} aria-label="Close modal">
           <X size={20} />
         </button>
@@ -22,17 +24,35 @@ export function ServiceModal({ service, onClose, onSelectQuoteService }) {
             {service.fullDescription || service.description}
           </p>
 
+          {/* Included Subservices */}
+          {subservicesList.length > 0 && (
+            <div>
+              <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <Layers size={16} style={{ color: '#0D9488' }} />
+                <span>Included Services &amp; Capabilities:</span>
+              </h4>
+              <div className="modal-subservices-grid">
+                {subservicesList.map((item, idx) => (
+                  <div key={idx} className="modal-checklist-item">
+                    <CheckCircle2 size={15} style={{ color: '#0D9488', flexShrink: 0 }} />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Key Enterprise Use Cases */}
           {service.useCases && service.useCases.length > 0 && (
             <div>
               <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
-                <Briefcase size={16} style={{ color: '#0D9488' }} />
-                <span>Key Enterprise Use Cases:</span>
+                <Briefcase size={16} style={{ color: '#0B2545' }} />
+                <span>Key Business Use Cases:</span>
               </h4>
-              <ul className="modal-checklist" style={{ marginBottom: 16 }}>
+              <ul className="modal-checklist">
                 {service.useCases.map((useCase, idx) => (
                   <li key={idx} className="modal-checklist-item">
-                    <CheckCircle2 size={16} style={{ color: '#0D9488', flexShrink: 0 }} />
+                    <CheckCircle2 size={15} style={{ color: '#0B2545', flexShrink: 0 }} />
                     <span>{useCase}</span>
                   </li>
                 ))}
@@ -40,42 +60,11 @@ export function ServiceModal({ service, onClose, onSelectQuoteService }) {
             </div>
           )}
 
-          {service.deliverables && (
-            <div>
-              <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', marginBottom: 10 }}>
-                Standard Deliverables & Scope:
-              </h4>
-              <ul className="modal-checklist">
-                {service.deliverables.map((item, idx) => (
-                  <li key={idx} className="modal-checklist-item">
-                    <CheckCircle2 size={16} style={{ color: '#0B2545', flexShrink: 0 }} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {service.languages && service.languages.length > 0 && (
-            <div>
-              <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>
-                Primary Languages / Support Scope:
-              </h4>
-              <div className="languages-tags-list">
-                {service.languages.map((lang) => (
-                  <span key={lang} className="language-pill-tag">
-                    {lang}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
           {service.qualityStandard && (
             <div style={{ background: '#f0fdfa', border: '1px solid rgba(13, 148, 136, 0.25)', borderRadius: 8, padding: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
               <ShieldCheck size={20} style={{ color: '#0D9488', flexShrink: 0 }} />
               <div style={{ fontSize: '0.84rem', color: '#1e293b' }}>
-                <strong>Quality Benchmark:</strong> {service.qualityStandard}
+                <strong>Quality Focus:</strong> {service.qualityStandard}
               </div>
             </div>
           )}
@@ -91,7 +80,7 @@ export function ServiceModal({ service, onClose, onSelectQuoteService }) {
                 if (onSelectQuoteService) onSelectQuoteService(service.title);
               }}
             >
-              <span>Request Quote for {service.title}</span>
+              <span>Request a Quote</span>
               <ArrowRight size={16} />
             </button>
             <button
@@ -106,6 +95,67 @@ export function ServiceModal({ service, onClose, onSelectQuoteService }) {
             >
               <Mail size={15} />
               <span>Contact Office</span>
+            </button>
+            <button
+              type="button"
+              className="btn-blue-outline"
+              onClick={onClose}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function IndustryModal({ industry, onClose, onSelectQuoteIndustry }) {
+  if (!industry) return null;
+
+  return (
+    <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="industry-modal-title">
+      <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+        <button type="button" className="modal-close-btn" onClick={onClose} aria-label="Close modal">
+          <X size={20} />
+        </button>
+
+        <span className="modal-header-badge" style={{ backgroundColor: 'rgba(13, 148, 136, 0.1)', color: '#0D9488' }}>
+          Industry-Specific Language Solutions
+        </span>
+        <h2 id="industry-modal-title" className="modal-title">{industry.name}</h2>
+
+        <div className="modal-body">
+          <p className="modal-desc">{industry.description}</p>
+
+          <div>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0f172a', marginBottom: 10 }}>
+              Relevant Language &amp; Outsourcing Services:
+            </h4>
+            <ul className="modal-checklist">
+              {industry.relevantServices.map((srv, idx) => (
+                <li key={idx} className="modal-checklist-item">
+                  <CheckCircle2 size={16} style={{ color: '#0D9488', flexShrink: 0 }} />
+                  <span>{srv}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div style={{ display: 'flex', gap: 12, marginTop: 12, flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              className="btn-yellow"
+              style={{ flex: 1, minWidth: 200, justifyContent: 'center' }}
+              onClick={() => {
+                onClose();
+                if (onSelectQuoteIndustry) {
+                  onSelectQuoteIndustry(industry.defaultQuoteService, industry.name);
+                }
+              }}
+            >
+              <span>Request a Quote</span>
+              <ArrowRight size={16} />
             </button>
             <button
               type="button"
@@ -156,11 +206,11 @@ export function LanguagesModal({ isOpen, onClose, onSelectLanguage }) {
         </button>
 
         <span className="modal-header-badge" style={{ backgroundColor: 'rgba(13, 148, 136, 0.1)', color: '#0D9488' }}>
-          Multilingual Reach
+          Global Language Coverage
         </span>
         <h2 id="languages-modal-title" className="modal-title">Languages Catalog</h2>
         <p className="modal-desc" style={{ marginBottom: 16 }}>
-          Explore our language translation and localization capabilities across Indian regional and international languages.
+          Explore our language capabilities across European, Asian, Middle Eastern, and African markets.
         </p>
 
         {/* Search and Filter */}
@@ -251,7 +301,7 @@ export function LanguagesModal({ isOpen, onClose, onSelectLanguage }) {
 
         <div style={{ marginTop: 20, paddingTop: 14, borderTop: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
-            Showing {filtered.length} languages (Illustrative catalog)
+            Showing {filtered.length} languages (Confirmed per project requirements)
           </span>
           <button type="button" className="btn-blue-outline" onClick={onClose} style={{ padding: '8px 18px', fontSize: '0.85rem' }}>
             Close Catalog

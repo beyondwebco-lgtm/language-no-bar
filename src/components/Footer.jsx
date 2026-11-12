@@ -191,7 +191,7 @@ export default function Footer() {
               <Calendar size={18} style={{ color: '#14B8A6', flexShrink: 0 }} />
               <div>
                 <strong>Established:</strong><br />
-                <span>February 2021 (5+ Years in Business)</span>
+                <span>February 2021 (5+ Years Delivering Business Solutions)</span>
               </div>
             </div>
 
@@ -206,8 +206,8 @@ export default function Footer() {
             <div className="footer-contact-item">
               <Clock size={18} style={{ color: '#14B8A6', flexShrink: 0 }} />
               <div>
-                <strong>Office Hours:</strong><br />
-                <span>Mon - Sat: 9:00 AM - 7:00 PM IST</span>
+                <strong>Availability:</strong><br />
+                <span>Monday – Saturday | 24/7 Support</span>
               </div>
             </div>
           </div>

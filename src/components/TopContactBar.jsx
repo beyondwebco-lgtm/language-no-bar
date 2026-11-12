@@ -8,24 +8,24 @@ export default function TopContactBar() {
         <div className="top-bar-left">
           <div className="top-contact-item" title="IBS Headquarters Location">
             <MapPin size={14} style={{ color: '#14B8A6' }} />
-            <span>Kondapur, Hyderabad – 500084, Telangana</span>
+            <span>Hyderabad, India – 500084</span>
           </div>
 
           <a href="#contact" className="top-contact-item" title="Inquire with IBS">
             <Mail size={14} style={{ color: '#14B8A6' }} />
-            <span>Contact & Inquiries: Form Below</span>
+            <span>Contact &amp; Inquiries: Form Below</span>
           </a>
 
           <span className="top-contact-item" style={{ cursor: 'default' }}>
             <Clock size={14} style={{ color: '#14B8A6' }} />
-            <span>Mon - Sat: 9:00 AM - 7:00 PM IST</span>
+            <span>Monday – Saturday | Available 24/7</span>
           </span>
         </div>
 
         <div className="top-bar-right">
           <div className="top-badge-item">
             <Calendar size={13} style={{ color: '#14B8A6' }} />
-            <span>Established Feb 2021 | 5+ Years in Business</span>
+            <span>Established Feb 2021 • 15+ Years Industry Expertise</span>
           </div>
         </div>
       </div>

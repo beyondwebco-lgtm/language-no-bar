@@ -1,155 +1,63 @@
 /**
  * IBS - Innovative Business Solutions
- * Languages Showcase: Featured Language Pairs
- * Note: Language pairings and offerings are presented as illustrative until confirmed by IBS.
+ * Central Language Coverage Data
+ * Note: Language combinations are illustrative examples; availability is confirmed per project requirements.
  */
 
-export const FEATURED_LANGUAGE_PAIRS = [
-  {
-    id: 'hi-en',
-    pair: 'Hindi ↔ English',
-    source: 'Hindi',
-    target: 'English',
-    nativeSource: 'हिन्दी',
-    flagA: '🇮🇳',
-    flagB: '🇬🇧',
-    speakers: 'Indian National Reach',
-    region: 'Indian Languages',
-    popularUse: 'Corporate Communications, Government, Legal & Business Documentation'
-  },
-  {
-    id: 'de-en',
-    pair: 'German ↔ English',
-    source: 'German',
-    target: 'English',
-    nativeSource: 'Deutsch',
-    flagA: '🇩🇪',
-    flagB: '🇬🇧',
-    speakers: 'European Commerce',
-    region: 'European Languages',
-    popularUse: 'Engineering, Manufacturing, Trade Agreements & Technical Manuals'
-  },
-  {
-    id: 'fr-en',
-    pair: 'French ↔ English',
-    source: 'French',
-    target: 'English',
-    nativeSource: 'Français',
-    flagA: '🇫🇷',
-    flagB: '🇬🇧',
-    speakers: 'Global Francophone',
-    region: 'European Languages',
-    popularUse: 'International Business, Consumer Goods, Corporate Reports & Tourism'
-  },
-  {
-    id: 'es-en',
-    pair: 'Spanish ↔ English',
-    source: 'Spanish',
-    target: 'English',
-    nativeSource: 'Español',
-    flagA: '🇪🇸',
-    flagB: '🇬🇧',
-    speakers: 'Americas & Europe',
-    region: 'European / Americas',
-    popularUse: 'Commercial Contracts, Digital Content, E-Commerce & Customer Messaging'
-  },
-  {
-    id: 'ar-en',
-    pair: 'Arabic ↔ English',
-    source: 'Arabic',
-    target: 'English',
-    nativeSource: 'العربية',
-    flagA: '🇸🇦',
-    flagB: '🇬🇧',
-    speakers: 'Middle Eastern Trade',
-    region: 'Middle Eastern',
-    popularUse: 'Energy, Trade Partnerships, Infrastructure & Corporate Documentation'
-  },
-  {
-    id: 'ja-en',
-    pair: 'Japanese ↔ English',
-    source: 'Japanese',
-    target: 'English',
-    nativeSource: '日本語',
-    flagA: '🇯🇵',
-    flagB: '🇬🇧',
-    speakers: 'East Asian Commerce',
-    region: 'Asian Languages',
-    popularUse: 'Technology, Hardware Specs, Operations & Manufacturing Standards'
-  },
-  {
-    id: 'zh-en',
-    pair: 'Chinese ↔ English',
-    source: 'Chinese',
-    target: 'English',
-    nativeSource: '中文 (Simplified & Traditional)',
-    flagA: '🇨🇳',
-    flagB: '🇬🇧',
-    speakers: 'Global Trade Hub',
-    region: 'Asian Languages',
-    popularUse: 'Supply Chain, International Trade, Logistics & Business Correspondence'
-  },
-  {
-    id: 'mr-en',
-    pair: 'Marathi ↔ English',
-    source: 'Marathi',
-    target: 'English',
-    nativeSource: 'मराठी',
-    flagA: '🇮🇳',
-    flagB: '🇬🇧',
-    speakers: 'Western India Hub',
-    region: 'Indian Languages',
-    popularUse: 'Commercial Contracts, State Documentation, Banking & Industry'
-  },
-  {
-    id: 'gu-en',
-    pair: 'Gujarati ↔ English',
-    source: 'Gujarati',
-    target: 'English',
-    nativeSource: 'ગુજરાતી',
-    flagA: '🇮🇳',
-    flagB: '🇬🇧',
-    speakers: 'Industrial Hub',
-    region: 'Indian Languages',
-    popularUse: 'Trade Agreements, Manufacturing, Commerce & Financial Notices'
-  }
+export const HERO_LANGUAGE_PAIRS = [
+  { source: 'Spanish', target: 'English', sourceNative: 'Español', targetNative: 'English', label: 'Professional Translation' },
+  { source: 'Spanish', target: 'French', sourceNative: 'Español', targetNative: 'Français', label: 'Business & Marketing Translation' },
+  { source: 'English', target: 'German', sourceNative: 'English', targetNative: 'Deutsch', label: 'Technical & Corporate Translation' },
+  { source: 'French', target: 'Arabic', sourceNative: 'Français', targetNative: 'العربية', label: 'Multilingual Localization' },
+  { source: 'Japanese', target: 'English', sourceNative: '日本語', targetNative: 'English', label: 'Technical & Manual Translation' },
+  { source: 'Hindi', target: 'Spanish', sourceNative: 'हिन्दी', targetNative: 'Español', label: 'Cross-Border Communication' },
+  { source: 'Telugu', target: 'English', sourceNative: 'తెలుగు', targetNative: 'English', label: 'Regional & Enterprise Support' },
+  { source: 'Chinese', target: 'French', sourceNative: '中文', targetNative: 'Français', label: 'Trade & Commercial Translation' },
+  { source: 'German', target: 'Italian', sourceNative: 'Deutsch', targetNative: 'Italiano', label: 'European Market Localization' },
+  { source: 'Arabic', target: 'English', sourceNative: 'العربية', targetNative: 'English', label: 'Document & Legal Translation' }
 ];
 
-export const ALL_SUPPORTED_LANGUAGES = {
-  'Indian Languages': [
-    { name: 'Hindi', native: 'हिन्दी' },
-    { name: 'Telugu', native: 'తెలుగు' },
-    { name: 'Marathi', native: 'मराठी' },
-    { name: 'Gujarati', native: 'ગુજરાતી' },
-    { name: 'Tamil', native: 'தமிழ்' },
-    { name: 'Kannada', native: 'ಕನ್ನಡ' },
-    { name: 'Malayalam', native: 'മലയാളം' },
-    { name: 'Bengali', native: 'বাংলা' },
-    { name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
-    { name: 'Odia', native: 'ଓଡ଼ିଆ' },
-    { name: 'Urdu', native: 'اردو' }
+export const GLOBAL_LANGUAGE_REGIONS = {
+  European: [
+    { name: 'English', native: 'English', region: 'European' },
+    { name: 'Spanish', native: 'Español', region: 'European' },
+    { name: 'French', native: 'Français', region: 'European' },
+    { name: 'German', native: 'Deutsch', region: 'European' },
+    { name: 'Italian', native: 'Italiano', region: 'European' },
+    { name: 'Portuguese', native: 'Português', region: 'European' },
+    { name: 'Dutch', native: 'Nederlands', region: 'European' },
+    { name: 'Polish', native: 'Polski', region: 'European' },
+    { name: 'Russian', native: 'Русский', region: 'European' }
   ],
-  'European Languages': [
-    { name: 'English', native: 'English' },
-    { name: 'German', native: 'Deutsch' },
-    { name: 'French', native: 'Français' },
-    { name: 'Spanish', native: 'Español' },
-    { name: 'Italian', native: 'Italiano' },
-    { name: 'Portuguese', native: 'Português' },
-    { name: 'Dutch', native: 'Nederlands' },
-    { name: 'Russian', native: 'Русский' }
+  Asian: [
+    { name: 'Chinese', native: '中文', region: 'Asian' },
+    { name: 'Japanese', native: '日本語', region: 'Asian' },
+    { name: 'Korean', native: '한국어', region: 'Asian' },
+    { name: 'Hindi', native: 'हिन्दी', region: 'Asian' },
+    { name: 'Bengali', native: 'বাংলা', region: 'Asian' },
+    { name: 'Tamil', native: 'தமிழ்', region: 'Asian' },
+    { name: 'Telugu', native: 'తెలుగు', region: 'Asian' },
+    { name: 'Kannada', native: 'ಕನ್ನಡ', region: 'Asian' },
+    { name: 'Malayalam', native: 'മലയാളം', region: 'Asian' },
+    { name: 'Marathi', native: 'मराठी', region: 'Asian' }
   ],
-  'Asian Languages': [
-    { name: 'Japanese', native: '日本語' },
-    { name: 'Chinese (Simplified)', native: '简体中文' },
-    { name: 'Chinese (Traditional)', native: '繁體中文' },
-    { name: 'Korean', native: '한국어' },
-    { name: 'Vietnamese', native: 'Tiếng Việt' },
-    { name: 'Bahasa Indonesia', native: 'Bahasa Indonesia' }
+  'Middle Eastern': [
+    { name: 'Arabic', native: 'العربية', region: 'Middle Eastern' },
+    { name: 'Hebrew', native: 'עברית', region: 'Middle Eastern' },
+    { name: 'Persian', native: 'فارسی', region: 'Middle Eastern' },
+    { name: 'Turkish', native: 'Türkçe', region: 'Middle Eastern' }
   ],
-  'Middle Eastern Languages': [
-    { name: 'Arabic', native: 'العربية' },
-    { name: 'Persian (Farsi)', native: 'فارسی' },
-    { name: 'Turkish', native: 'Türkçe' }
+  African: [
+    { name: 'Swahili', native: 'Kiswahili', region: 'African' },
+    { name: 'Amharic', native: 'አማርኛ', region: 'African' },
+    { name: 'Yoruba', native: 'Yorùbá', region: 'African' },
+    { name: 'Hausa', native: 'Hausa', region: 'African' },
+    { name: 'Zulu', native: 'isiZulu', region: 'African' }
   ]
 };
+
+export const ALL_LANGUAGE_NAMES = Object.values(GLOBAL_LANGUAGE_REGIONS)
+  .flat()
+  .map((lang) => lang.name);
+
+export const ALL_SUPPORTED_LANGUAGES = GLOBAL_LANGUAGE_REGIONS;

@@ -8,17 +8,17 @@ export default function AboutUs({ onOpenQuote }) {
         <div className="about-grid">
           {/* Left Column: Heading, Specified Content & Highlights */}
           <div className="about-text-content">
-            <span className="section-tag">Who We Are</span>
+            <span className="section-tag">15+ Years of Expertise. 5+ Years of Business Excellence.</span>
             <h2 className="section-title">
-              About <span>Innovative Business Solutions</span>
+              Built on Expertise. <span>Driven by Global Communication.</span>
             </h2>
 
             <p className="about-paragraph-primary">
-              Established in February 2021, Innovative Business Solutions (IBS) is a Hyderabad-based company specializing in professional language translation and business outsourcing services.
+              Established in February 2021 in Hyderabad, Innovative Business Solutions delivers professional language and outsourcing solutions to organizations seeking effective communication across markets. Guided by experienced leadership and a commitment to quality, IBS combines linguistic expertise, technology and flexible delivery models to support evolving business needs.
             </p>
 
             <p className="about-paragraph-secondary">
-              With <strong>5+ years of business experience</strong> since our establishment in February 2021—and backed by our founder Abburi Tanuja's <strong>15+ years of professional expertise</strong>—we focus on helping businesses overcome communication challenges, improve operational efficiency, and achieve sustainable growth through reliable and customized solutions.
+              Established in February 2021, Innovative Business Solutions has built over five years of experience helping organizations overcome language barriers and streamline business operations—led by Abburi Tanuja, a seasoned professional bringing over 15 years of industry expertise in language services and business solutions.
             </p>
 
             <div className="about-features-list">
@@ -143,19 +143,19 @@ export default function AboutUs({ onOpenQuote }) {
               </svg>
             </div>
 
-            {/* Verified Company & Founder Statistics Strip */}
+            {/* Verified Company & Leadership Statistics Strip */}
             <div className="map-stats-strip">
               <div className="map-stat-col">
-                <span className="val">Feb 2021</span>
-                <span className="lbl">Established</span>
+                <span className="val">15+ Years</span>
+                <span className="lbl">Industry Expertise</span>
               </div>
               <div className="map-stat-col">
                 <span className="val">5+ Years</span>
-                <span className="lbl">Company Experience</span>
+                <span className="lbl">Delivering Business Solutions</span>
               </div>
               <div className="map-stat-col">
-                <span className="val">15+ Years</span>
-                <span className="lbl">Founder Experience</span>
+                <span className="val">Feb 2021</span>
+                <span className="lbl">Established</span>
               </div>
             </div>
           </div>

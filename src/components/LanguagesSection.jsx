@@ -1,83 +1,127 @@
-import React from 'react';
-import { ArrowLeftRight, Globe, ArrowRight } from 'lucide-react';
-import { FEATURED_LANGUAGE_PAIRS } from '../data/languagesData';
+import React, { useState, useMemo } from 'react';
+import { Globe, Search, ArrowRight } from 'lucide-react';
+import { GLOBAL_LANGUAGE_REGIONS } from '../data/languagesData';
 
-export default function LanguagesSection({ onOpenAllLanguages, onSelectPair }) {
+export default function LanguagesSection({ onSelectLanguage }) {
+  const [activeRegion, setActiveRegion] = useState('All Languages');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const regions = ['All Languages', ...Object.keys(GLOBAL_LANGUAGE_REGIONS)];
+
+  const allLanguages = useMemo(() => {
+    return Object.values(GLOBAL_LANGUAGE_REGIONS).flat();
+  }, []);
+
+  const filteredLanguages = useMemo(() => {
+    const baseList =
+      activeRegion === 'All Languages'
+        ? allLanguages
+        : GLOBAL_LANGUAGE_REGIONS[activeRegion] || [];
+
+    if (!searchQuery.trim()) return baseList;
+    const q = searchQuery.toLowerCase();
+    return baseList.filter(
+      (lang) =>
+        lang.name.toLowerCase().includes(q) ||
+        lang.native.toLowerCase().includes(q) ||
+        lang.region.toLowerCase().includes(q)
+    );
+  }, [activeRegion, searchQuery, allLanguages]);
+
   return (
     <section id="languages" className="languages-section">
       <div className="container">
         <div className="text-center">
-          <span className="section-tag">Multilingual Capability</span>
+          <span className="section-tag">Regional &amp; International Reach</span>
           <h2 className="section-title">
-            Connecting Businesses Across <span>Languages</span>
+            Global <span>Language Coverage</span>
           </h2>
           <p className="section-subtitle">
-            Facilitating clear communication across Indian regional and major international languages to support enterprise growth and cross-border collaboration.
+            We support multilingual communication across major global markets, helping organizations connect with customers, partners and stakeholders across regions.
           </p>
         </div>
 
-        {/* 9 Language Pair Cards (Showcasing Hindi, English, French, Spanish, Arabic, German, Japanese, Chinese, Marathi, Gujarati) */}
-        <div className="language-cards-grid">
-          {FEATURED_LANGUAGE_PAIRS.map((item) => (
-            <div
-              key={item.id}
-              className="lang-pair-card"
-              role="button"
-              tabIndex={0}
-              aria-label={`Select ${item.pair} translation service`}
-              onClick={() => {
-                if (onSelectPair) onSelectPair(item);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && onSelectPair) {
-                  onSelectPair(item);
-                }
-              }}
-            >
-              <div className="lang-pair-card-header">
-                <div className="flags-display">
-                  <span>{item.flagA}</span>
-                  <ArrowLeftRight size={14} style={{ color: '#0D9488' }} />
-                  <span>{item.flagB}</span>
-                </div>
-                <span className="lang-region-tag" style={{ color: '#0D9488', backgroundColor: 'rgba(13, 148, 136, 0.08)' }}>
-                  {item.region}
-                </span>
-              </div>
+        {/* Interactive Regional Explorer Controls */}
+        <div className="lang-explorer-controls">
+          <div className="lang-region-tabs" role="tablist" aria-label="Filter languages by region">
+            {regions.map((region) => {
+              const count =
+                region === 'All Languages'
+                  ? allLanguages.length
+                  : (GLOBAL_LANGUAGE_REGIONS[region] || []).length;
 
-              <h3 className="lang-pair-title">{item.pair}</h3>
-              <div className="lang-pair-native">{item.nativeSource}</div>
+              return (
+                <button
+                  key={region}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeRegion === region}
+                  className={`lang-region-tab ${activeRegion === region ? 'active' : ''}`}
+                  onClick={() => setActiveRegion(region)}
+                >
+                  <span>{region}</span>
+                  <span className="lang-tab-count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
 
-              <div className="lang-pair-meta">
-                <div className="lang-meta-row">
-                  <span className="lang-meta-label">Reach:</span>
-                  <span className="lang-meta-val">{item.speakers}</span>
+          <div className="lang-search-box">
+            <Search size={16} className="lang-search-icon" aria-hidden="true" />
+            <input
+              type="text"
+              className="lang-search-input"
+              placeholder="Search language or script..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search supported languages"
+            />
+          </div>
+        </div>
+
+        {/* Language Chips Grid */}
+        {filteredLanguages.length === 0 ? (
+          <div className="lang-empty-state">
+            <p>
+              No matching language found in this filter. Other regional and emerging-market languages are supported based on project requirements and resource availability.
+            </p>
+          </div>
+        ) : (
+          <div className="lang-chips-grid">
+            {filteredLanguages.map((lang) => (
+              <button
+                key={lang.name}
+                type="button"
+                className="lang-chip-card"
+                onClick={() => onSelectLanguage && onSelectLanguage(lang.name)}
+                aria-label={`Request quote for ${lang.name} language services`}
+              >
+                <div className="lang-chip-top">
+                  <span className="lang-chip-name">{lang.name}</span>
+                  <span className="lang-chip-region">{lang.region}</span>
                 </div>
-                <div className="lang-meta-row">
-                  <span className="lang-meta-label">Key Sectors:</span>
-                  <span className="lang-meta-val">{item.popularUse}</span>
+                <div className="lang-chip-bottom">
+                  <span className="lang-chip-native">{lang.native}</span>
+                  <ArrowRight size={14} className="lang-chip-arrow" />
                 </div>
-              </div>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Additional Languages & Closing Statement */}
+        <div className="lang-coverage-footer">
+          <div className="lang-coverage-note">
+            <Globe size={18} style={{ color: '#0D9488', flexShrink: 0 }} />
+            <div>
+              <p className="lang-note-primary">
+                Other regional and emerging-market languages are supported based on project requirements and resource availability.
+              </p>
+              <p className="lang-note-secondary">
+                We work with language professionals and specialized resources to support the language combinations required for each project.
+              </p>
             </div>
-          ))}
-        </div>
-
-        {/* Catalog Button & Illustrative Notice */}
-        <div className="text-center" style={{ marginTop: 24 }}>
-          <button
-            type="button"
-            className="btn-blue-outline"
-            style={{ padding: '13px 32px' }}
-            onClick={onOpenAllLanguages}
-          >
-            <Globe size={18} />
-            <span>Explore Language Catalog</span>
-            <ArrowRight size={16} />
-          </button>
-
-          <p className="languages-disclaimer-note" style={{ fontSize: '0.8rem', color: '#64748b', marginTop: 12 }}>
-            * Note: Language pairs and capabilities displayed are illustrative offerings subject to final project scope confirmation by IBS.
-          </p>
+          </div>
         </div>
       </div>
     </section>
