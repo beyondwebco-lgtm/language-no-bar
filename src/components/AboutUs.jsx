@@ -18,7 +18,7 @@ export default function AboutUs({ onOpenQuote }) {
             </p>
 
             <p className="about-paragraph-secondary">
-              With over five years of experience, we focus on helping businesses overcome communication challenges, improve operational efficiency, and achieve sustainable growth through reliable and customized solutions.
+              With <strong>5+ years of business experience</strong> since our establishment in February 2021—and backed by our founder Abburi Tanuja's <strong>15+ years of professional expertise</strong>—we focus on helping businesses overcome communication challenges, improve operational efficiency, and achieve sustainable growth through reliable and customized solutions.
             </p>
 
             <div className="about-features-list">
@@ -143,7 +143,7 @@ export default function AboutUs({ onOpenQuote }) {
               </svg>
             </div>
 
-            {/* Verified Company Statistics Strip */}
+            {/* Verified Company & Founder Statistics Strip */}
             <div className="map-stats-strip">
               <div className="map-stat-col">
                 <span className="val">Feb 2021</span>
@@ -151,11 +151,11 @@ export default function AboutUs({ onOpenQuote }) {
               </div>
               <div className="map-stat-col">
                 <span className="val">5+ Years</span>
-                <span className="lbl">Experience</span>
+                <span className="lbl">Company Experience</span>
               </div>
               <div className="map-stat-col">
-                <span className="val">Hyderabad</span>
-                <span className="lbl">Headquarters</span>
+                <span className="val">15+ Years</span>
+                <span className="lbl">Founder Experience</span>
               </div>
             </div>
           </div>

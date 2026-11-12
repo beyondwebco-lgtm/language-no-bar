@@ -11,7 +11,7 @@ export default function FounderSection() {
             Meet Our <span>Founder</span>
           </h2>
           <p className="section-subtitle">
-            Guiding IBS with a dedicated commitment to professional language translation and operational excellence.
+            Led by Abburi Tanuja, bringing 15+ years of professional experience in the language services and business solutions industry.
           </p>
         </div>
 
@@ -36,17 +36,17 @@ export default function FounderSection() {
               <p className="founder-role">Founder – Innovative Business Solutions</p>
               
               <div className="founder-badges-stack">
+                <div className="founder-badge-pill" style={{ backgroundColor: 'rgba(13, 148, 136, 0.12)', color: '#0F766E', borderColor: 'rgba(13, 148, 136, 0.3)', fontWeight: 700 }}>
+                  <Briefcase size={14} />
+                  <span>15+ Years Professional Experience</span>
+                </div>
                 <div className="founder-badge-pill">
                   <Calendar size={14} />
-                  <span>Founded Feb 2021</span>
+                  <span>Founded IBS: Feb 2021</span>
                 </div>
                 <div className="founder-badge-pill">
                   <MapPin size={14} />
                   <span>Hyderabad, Telangana</span>
-                </div>
-                <div className="founder-badge-pill">
-                  <Briefcase size={14} />
-                  <span>5+ Years Experience</span>
                 </div>
               </div>
             </div>
@@ -77,7 +77,7 @@ export default function FounderSection() {
                 <span>Professional Experience & Background</span>
               </h4>
               <p className="founder-detail-text">
-                Established in February 2021, Innovative Business Solutions was founded under the leadership of Abburi Tanuja. With over five years of industry experience, the focus has remained steadfast on building dependable language translation services and business outsourcing solutions tailored to client needs across Hyderabad and beyond.
+                With <strong>15+ years of professional experience</strong> in the language services and business solutions industry, Abburi Tanuja established Innovative Business Solutions (IBS) in February 2021. Combining her 15+ years of industry expertise with IBS's 5+ years in business, she leads the Hyderabad-based team in delivering dependable language translation and business outsourcing solutions.
               </p>
             </div>
 
@@ -88,7 +88,7 @@ export default function FounderSection() {
                 <span>Biography & Professional Profile</span>
               </h4>
               <p className="founder-detail-text text-muted">
-                Detailed professional biography, career milestones, and academic background will be featured here upon official confirmation by the founder.
+                Abburi Tanuja brings 15+ years of professional expertise in language translation and operational business solutions to her role as Founder of IBS. Detailed career milestones and academic background will be featured here upon official confirmation by the founder.
               </p>
             </div>
           </div>

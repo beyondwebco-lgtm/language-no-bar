@@ -24,7 +24,7 @@ export default function Hero({ onOpenQuote }) {
           <div className="hero-content">
             <div className="hero-pill">
               <span className="hero-pill-badge">Hyderabad, India</span>
-              <span className="hero-pill-text">Founded Feb 2021 • 5+ Years Experience</span>
+              <span className="hero-pill-text">Established Feb 2021 • 5+ Years in Business</span>
             </div>
 
             <h1 className="hero-title">
@@ -56,19 +56,19 @@ export default function Hero({ onOpenQuote }) {
               </button>
             </div>
 
-            {/* Verified Statistics based on IBS details */}
+            {/* Verified Statistics clearly distinguishing Founder vs. Company Experience */}
             <div className="hero-trust-row">
               <div className="hero-stat-item">
-                <span className="hero-stat-number">5+</span>
-                <span className="hero-stat-label">Years of Experience</span>
+                <span className="hero-stat-number" style={{ color: '#0D9488' }}>15+ Years</span>
+                <span className="hero-stat-label">Founder Experience</span>
               </div>
               <div className="hero-stat-item">
-                <span className="hero-stat-number">2021</span>
-                <span className="hero-stat-label">Established</span>
+                <span className="hero-stat-number">5+ Years</span>
+                <span className="hero-stat-label">Company Experience</span>
               </div>
-              <div className="hero-stat-item hero-stat-dual">
-                <span className="hero-stat-number" style={{ fontSize: '1.45rem' }}>Dual Focus</span>
-                <span className="hero-stat-label">Translation & Outsourcing Expertise</span>
+              <div className="hero-stat-item">
+                <span className="hero-stat-number" style={{ fontSize: '1.35rem' }}>Feb 2021</span>
+                <span className="hero-stat-label">Established</span>
               </div>
             </div>
           </div>

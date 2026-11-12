@@ -65,7 +65,7 @@ export default function ContactSection() {
                   <h4>Corporate Office</h4>
                   <p><strong>IBS – Innovative Business Solutions</strong></p>
                   <p>63 B, Sriram Nagar, Kondapur, Hyderabad – 500084, Telangana, India.</p>
-                  <span className="note">Established February 2021 | 5+ Years Experience</span>
+                  <span className="note">Established February 2021 | 5+ Years in Business</span>
                 </div>
               </div>
 

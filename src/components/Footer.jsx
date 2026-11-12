@@ -191,7 +191,7 @@ export default function Footer() {
               <Calendar size={18} style={{ color: '#14B8A6', flexShrink: 0 }} />
               <div>
                 <strong>Established:</strong><br />
-                <span>February 2021 (5+ Years Experience)</span>
+                <span>February 2021 (5+ Years in Business)</span>
               </div>
             </div>
 

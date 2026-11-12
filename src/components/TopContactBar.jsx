@@ -25,7 +25,7 @@ export default function TopContactBar() {
         <div className="top-bar-right">
           <div className="top-badge-item">
             <Calendar size={13} style={{ color: '#14B8A6' }} />
-            <span>Established Feb 2021 | 5+ Years Experience</span>
+            <span>Established Feb 2021 | 5+ Years in Business</span>
           </div>
         </div>
       </div>
